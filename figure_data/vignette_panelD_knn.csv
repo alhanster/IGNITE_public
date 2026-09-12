@@ -1,0 +1,7 @@
+gene,cosine,mechanism,approved_drugs,approved_drugs_label,pathway,order
+CD3E,0.355,CD3 complex,Teplizumab; Blinatumomab; Elranatamab; Epcoritamab; Glofitamab; Mosunetuzumab; Muromonab-CD3; Odronextamab; Talquetamab; Teclistamab,Teplizumab  + 9 more,cd3,1
+LCK,0.328,TCR proximal kinase,Dasatinib Anhydrous,Dasatinib Anhydrous,tcrk,2
+CD3G,0.322,CD3 complex,Blinatumomab; Elranatamab; Epcoritamab; Glofitamab; Mosunetuzumab; Muromonab-CD3; Odronextamab; Talquetamab; Teclistamab,Blinatumomab  + 8 more,cd3,3
+CD2,0.306,co-stim / adhesion,Alefacept,Alefacept,costim,4
+PPP3CA,0.29,calcineurin,Voclosporin,Voclosporin,calci,5
+PRKCQ,0.283,PKCθ (TCR→NF-κB),Midostaurin,Midostaurin,tcrk,6

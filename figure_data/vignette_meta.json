@@ -1,0 +1,12 @@
+{
+ "stat4_score": 0.963263,
+ "approved_median": 0.761192,
+ "stat4_rank": 13,
+ "knn_p95": 0.234,
+ "gwas_total": 183,
+ "ot_diseases": 1164,
+ "approved_drugs": 0,
+ "knn_median_unlabeled": 0.029,
+ "n_genes": 19502,
+ "stat4_top_pct": 0.06665982976105014
+}

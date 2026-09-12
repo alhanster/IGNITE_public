@@ -1,0 +1,7 @@
+panel,A,B,auc_A,auc_B,delta,z,p,p_holm,sig
+immune_exclusive,our_model,OT_genetic_immune,0.672,0.582,0.09,5.32,1.05e-07,2.11e-07,****
+immune_exclusive,our_model,OT_genetic_cardiac,0.672,0.518,0.154,8.15,3.54e-16,1.06e-15,****
+immune_exclusive,OT_genetic_immune,OT_genetic_cardiac,0.582,0.518,0.064,3.5,4.59e-04,4.59e-04,***
+cardiac_exclusive,our_model,OT_genetic_immune,0.581,0.556,0.025,0.8,4.24e-01,4.24e-01,ns
+cardiac_exclusive,our_model,OT_genetic_cardiac,0.581,0.68,-0.099,-2.9,3.69e-03,7.37e-03,**
+cardiac_exclusive,OT_genetic_immune,OT_genetic_cardiac,0.556,0.68,-0.123,-3.85,1.18e-04,3.53e-04,***

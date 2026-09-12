@@ -1,0 +1,47 @@
+disease,label,efo,gwas_credible_sets_score,overall_assoc_score,tag,contributes_to_gwas_score,n_credible_sets,best_l2g,credible_sets
+hypothyroidism,Hypothyroidism,MONDO_0005420,0.801156,0.489991,other,0,0,,
+rheumatoid arthritis,Rheumatoid Arthritis,MONDO_0008383,0.792164,0.585541,immune,1,28,0.861563,94e16a01d1aa3f82674a13a95de35b09; 43ed12fd347adbd4fb75457400e35e84; c191a188daaf134042547240c44c68b1; 0f403053484fba33ef1f9555c560873d; bbd7c4ad2f546f634be21c611322720b; b4c8d2c81f9d78e891f032368a739d43; d07a790ab920137eaf56edc0329bc454; f5ca155e63f0016b5c6465e9ef72df03; d7507eef4c9026232dc280f4edd57360; 1af81a5b97fa9d3c9b464421f5d79a0d; 1c7a0061c1c63d00b23be6b80f63be84; 4fab4b0291baaaf8337f495a25451570; 7fcdc140548861f15dfd70df62927693; bc72d0141cbce6a1a8f3d7a3fe268193; f9e3f3d8125e471196fb7c61b77b2b35; 430970623e5f430eb529cf22d583daaf; 661255a06a78ee957bfc52de1cf99602; afdf420a568aedb633330772cbfced7b; d5582e208ec194c493123aaf12628717; 7f59e86c334e7f8d7b85443356c22310; 7df65eed659716aa2771c09883e9134c; c2b9adf97b9ac0b5be5ec74f01aa1e92; 2395be678b559746d5063a1cbb29af91; f7f7425080a2cf33ce63f6547a611def; 9f7ada1208568b5ad02bb7b31e65a494; 5d8f646e24cfdb568c289b69818a8f9e; 83ce9c418c8a56b4878d632acf5b158a; 57d5dc2de569982a04b37ec31533084f
+ACPA-positive rheumatoid arthritis,ACPA+ Rheumatoid Arthritis,EFO_0009459,0.719111,0.43717,immune,1,5,0.825011,1b75205ff86485664c4027cec6fcefc9; 446840e910939d55a2f2eab0549db047; 9e69c8352760e2aa10f7255775e8bbaf; acd062725dd19e759bd8e1a7414a0b86; 430970623e5f430eb529cf22d583daaf
+systemic lupus erythematosus,Systemic Lupus Erythematosus,MONDO_0007915,0.714386,0.574947,immune,1,32,0.733301,0b13317a57f0d6e6234916b09d9d8938; 0bb2e452abae39447e6e4cd177953cd8; 1f8ae7a21f411ec152273cedc0b0ec9e; 4af56361023bfdd22c1d6423f4516905; b7ce0a92df6a2e591c15b81dcca0e8b0; d4986986c475eabab264b394d7585962; f1539735adb6ed86e1e7c6804a30c598; 156a814bdddcd3e7d191b48b9eb1bd46; 2181666c501c064505b1849399a6ba35; b8c26a9e8c50a3531b1f8a26eeb1e8aa; 7bac672e8ae9c317ce6ef9bb2d5adf43; 0b8220c18fee3125f79e0a575bfad51f; 33590d8269ac5bfc3e2b15a9adea1d19; 431db9f2a84a74f56c5d7dd2063bbfd2; 5579c9452fa4e44d03a481ace7f79cf1; a9aa34a91bee594e8dc9d1df59add13b; bb95c3939203475065b297299e60c71d; e9251672076c8e27c4d5158948e77f6c; f4c841520189a0101c80d269b87207ce; 1697b5c41b41b9c9db1050e69b235aef; 486237111321764b2dad47723dcf3e3e; 7ff6a21c662d5e891468be3a541a7aa8; c49151813a7f67cd3ac7bef0bbb7003b; 9ac1dc9084d81157d01a655dd371b684; c0fb429c8a6198b9ca7b73333053e0dc; 7f59e86c334e7f8d7b85443356c22310; 60838b9cc29d43f9760f419be000fd9e; c66c526d1dcb25635c4c7edd24b9a395; 8994d5218655b48973b9d7ead5c9f595; 1cbb28856a2ddd7954dcaa863b8d20e7; 5ba96c900e9310f8b6d4dc123ac94567; 61b119301ebf6b0e8f4e815355790d03
+systemic sclerosis,Systemic Sclerosis,MONDO_0005100,0.684988,0.431008,immune,1,11,0.729432,3df8fb46aa17789a6c9afa84c8f4f95d; 29b00b67ef8ac0bd542d6c94a6edee9d; 7e17cc1d24e12590214a12a4a338eb55; 1a3e62b7349324170f5107cf37f50603; 3e7b9d93a5ee58099c007488f7b428bd; b985366160f2626a56fe80448b3de253; 486237111321764b2dad47723dcf3e3e; 7f59e86c334e7f8d7b85443356c22310; 2b0501b2674d7f45a2da269aa9e24c07; de56cdde623e0f2e658408149a91dda3; db5061188290a771d78c2fcdf926c0b5
+myxedema,Myxedema,MONDO_0009718,0.670529,0.407635,other,0,0,,
+thyroid gland disorder,Thyroid Gland Disorder,MONDO_0003240,0.667794,0.405972,other,0,0,,
+Oral ulcer,Oral Ulcer,HP_0000155,0.641613,0.392451,other,0,0,,
+autoimmune disease,Autoimmune Disease,MONDO_0007179,0.63979,0.400541,immune,1,5,0.722803,a1ce5daca10dd23a7243601ac00bd6a3; 18b055269c8067bf70b988340f954582; 1cab92e4b8641626bde6212943abe023; 442c2f1ee22a5b03acea97a438c5355d; b43aa3dfa6cdc3e8a2a984b6b3540e37
+Behcet disease,Behcet Disease,MONDO_0007191,0.636679,0.393564,other,0,0,,
+Sjogren syndrome,Sjogren Syndrome,MONDO_0010030,0.63158,0.389116,immune,1,5,0.715816,e65130cd901afc1c3d81d99b55c6efd4; bb26586f7bc61b7bae6e6fcd473212b8; 226baadd442040056cdcadc57a184d49; ed3bf34923c65d22f5931916ad48af8e; df75ac03759447f7e3f2d7d18fdeb28e
+primary biliary cholangitis,Primary Biliary Cholangitis,MONDO_0005388,0.629184,0.403903,other,0,0,,
+Hashimoto thyroiditis,Hashimoto Thyroiditis,MONDO_0007699,0.618937,0.377233,immune,1,6,0.710949,326c23aad8207f33c2bc2ce625daca8b; 92acd60dd72bee7b1cdd240a662aefb8; 1d64a22beb56bc1e752721506dce180f; 505e340523ba9b398db0ca4b1bb9a6a3; 7592555ffc754659aaaa5bf655aacfba; b8c0ae3d23cd1280a4e22020ac12ddef
+multiple sclerosis,Multiple Sclerosis,MONDO_0005301,0.610053,0.375034,immune,1,2,0.804266,9145c3ea5bb9a9d19e3503d724ca3e04; 0f1f8ab0ab136934feb8e1412e26fe3b
+Graves disease,Graves Disease,MONDO_0005364,0.599491,0.369741,immune,1,3,0.747408,4f5fcbbddff595c133e9bb1792c1aa1e; 69a1720e634cc1b839fc3836a13efc4e; a72df121d011c8a8dea20222e95b73ef
+celiac disease,Celiac Disease,MONDO_0005130,0.584247,0.35638,immune,1,3,0.731929,958c5ac77c4232bcd318e1e1cafab478; 5d8f646e24cfdb568c289b69818a8f9e; 114cc0385eb6391f82c50a4259c65fde
+anti-centromere-antibody-positive systemic scleroderma,Anti-centromere+ Scleroderma,EFO_0008536,0.553084,0.336237,immune,1,2,0.729432,2fdec77aff778dbf6c8b3af7d2acc615; 3d2832d97ed6a5e8c5c05028a5924a27
+connective tissue disorder,Connective Tissue Disorder,MONDO_0003900,0.551779,0.335443,other,0,0,,
+autoimmune thyroid disease,Autoimmune Thyroid Disease,MONDO_0005623,0.549268,0.348555,immune,1,2,0.722803,437b4e4bf8991866531aac3890e126bd; 9c63f70f8d0150fe9849e63cdad55457
+autoimmune disorder of musculoskeletal system,Musculoskeletal Autoimmunity,MONDO_0000589,0.54026,0.328441,immune,1,2,0.710949,4d6388aa46820a1ea6c1d8bb074bceba; a1b9630545feced0bce249bd737f558a
+limited scleroderma,Limited Scleroderma,EFO_1001017,0.539449,0.327948,immune,1,2,0.710949,e7bb508bb96276cd9d912b434885a7d5; 112d2d86d16113a3fd82dd1c1ce7d069
+myositis disease,Myositis Disease,MONDO_0021167,0.5014,0.305186,other,0,0,,
+hypotensive disorder,Hypotensive Disorder,MONDO_0005468,0.483895,0.294175,other,0,0,,
+COVID-19,COVID-19,MONDO_0100096,0.445796,0.275973,other,0,0,,
+hepatocellular carcinoma,Hepatocellular Carcinoma,MONDO_0007256,0.443444,0.297266,other,0,0,,
+Crohn disease,Crohn Disease,MONDO_0005011,0.43856,0.27016,immune,1,1,0.721398,443ced8f6daaffc2bc16b3b982f018da
+lupus erythematosus,Lupus Erythematosus,MONDO_0004670,0.432208,0.264693,immune,1,1,0.710949,45e3cf563cdcf74cf003c2e8463fe454
+immune system disorder,Immune System Disorder,MONDO_0005046,0.432208,0.26411,immune,1,1,0.710949,259bfc25f33d3456a3c7fd9c4c9601f4
+type 1 diabetes mellitus,Type 1 Diabetes Mellitus,MONDO_0005147,0.432208,0.280465,immune,1,1,0.710949,b71e601f3f1068091e285161b00b16bd
+mixed connective tissue disease,Mixed Connective Tissue Disease,MONDO_0005854,0.432208,0.262752,immune,1,1,0.710949,9e12aa79e5e094e138fed2c9374f06f0
+hyperthyroidism,Hyperthyroidism,MONDO_0004425,0.428739,0.263162,other,0,0,,
+thyrotoxicosis,Thyrotoxicosis,MONDO_0010138,0.428739,0.260643,other,0,0,,
+juvenile idiopathic arthritis,Juvenile Idiopathic Arthritis,MONDO_0011429,0.428739,0.276411,other,0,0,,
+arthritic joint disease,Arthritic Joint Disease,MONDO_0005578,0.420741,0.263102,other,0,0,,
+non-typhoidal Salmonella bacteremia,Non-typhoidal Salmonella Bacteremia,EFO_0009087,0.418185,0.254227,other,0,0,,
+B-cell acute lymphoblastic leukemia,B-cell ALL,MONDO_0004947,0.405992,0.246815,immune,1,1,0.667825,54e98a8d8ab745973772a68fa832ba20
+inflammatory bowel disease,Inflammatory Bowel Disease,MONDO_0005265,0.366407,0.236361,immune,1,1,0.602712,c706fd4234c297017bbf309d18fa25c8
+dyshidrosis,Dyshidrosis,MONDO_0006540,0.356761,0.216886,other,0,0,,
+hyperaldosteronism,Hyperaldosteronism,MONDO_0003009,0.323702,0.196788,other,0,0,,
+cervical carcinoma,Cervical Carcinoma,MONDO_0005131,0.044777,0.027868,other,0,0,,
+hair color,Hair Color,EFO_0003924,0.043268,0.026304,other,0,0,,
+Pathologic fracture,Pathologic Fracture,HP_0002756,0.036706,0.022314,other,0,0,,
+idiopathic generalized epilepsy,Idiopathic Generalized Epilepsy,MONDO_0005579,0.034971,0.02126,other,0,0,,
+arterial embolism,Arterial Embolism,EFO_0010671,0.031987,0.019446,other,0,0,,
+hypertensive disorder,Hypertensive Disorder,MONDO_0005044,0.031311,0.021386,other,0,0,,
+bilirubin metabolism disease,Bilirubin Metabolism Disease,MONDO_0024431,0.030445,0.018509,other,0,0,,

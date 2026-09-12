@@ -1,0 +1,4 @@
+axis,comparison,odds_ratio,p,verdict,background
+GO biological process (no BP term),22.2% vs 9.5%,2.7091,0.0184,significant,coverage-matched non-discordant (n=11352)
+UniProt annotation score (median),5.0 vs 5.0,,0.2028,not significant,coverage-matched non-discordant (n=11352)
+UniProt empty function field,16.7% vs 9.5%,1.914,0.1206,not significant,coverage-matched non-discordant (n=11352)

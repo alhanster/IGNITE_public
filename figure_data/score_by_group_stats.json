@@ -1,0 +1,62 @@
+{
+  "heldout_in_trial_vs_non_target": {
+    "U": 8521039.0,
+    "p_one_sided": 7.922185014504778e-36,
+    "note": "one-sided companion of the in-trial vs non-target pairwise test"
+  },
+  "score_basis": "cross-fitted, 5 folds over positives at T=200",
+  "groups": {
+    "non-target": {
+      "n": 18435,
+      "median": 0.4863603732950466,
+      "mean": 0.4898651914081847,
+      "q25": 0.24276997231053227,
+      "q75": 0.734411855194339
+    },
+    "in-trial": {
+      "n": 727,
+      "median": 0.693980104604656,
+      "mean": 0.6254207059777455,
+      "q25": 0.3853450928109937,
+      "q75": 0.8811403958568351
+    },
+    "approved": {
+      "n": 340,
+      "median": 0.8747564352374115,
+      "mean": 0.7828068916008614,
+      "q25": 0.6669572351553688,
+      "q75": 0.9622474617987897
+    }
+  },
+  "kruskal_H": 486.2463150975796,
+  "kruskal_p": 2.5879403005502575e-106,
+  "anova_F": 352.67386521159966,
+  "anova_p": 3.474471667629887e-151,
+  "pairwise_mannwhitney": [
+    {
+      "a": "non-target",
+      "b": "in-trial",
+      "U": 4881206.0,
+      "p": 1.5844370029009556e-35,
+      "p_holm": 3.168874005801911e-35,
+      "stars": "****"
+    },
+    {
+      "a": "non-target",
+      "b": "approved",
+      "U": 1300989.0,
+      "p": 1.7496214410969522e-76,
+      "p_holm": 5.248864323290857e-76,
+      "stars": "****"
+    },
+    {
+      "a": "in-trial",
+      "b": "approved",
+      "U": 81519.0,
+      "p": 2.9742971867344836e-19,
+      "p_holm": 2.9742971867344836e-19,
+      "stars": "****"
+    }
+  ],
+  "_provenance": "derived from outputs/model/full_model_pu_scores.csv by build_score_by_group.py"
+}

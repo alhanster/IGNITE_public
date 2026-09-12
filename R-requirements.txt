@@ -1,0 +1,19 @@
+# R packages for the stage-2 renderers in src/figures/*.R.
+# See REPRODUCIBILITY.md, R (stage 2, `make figures`), for exact package and system-library pins.
+# R 4.4.1
+
+ggplot2==4.0.3     # all figures
+patchwork==1.3.2   # multi-panel composition; >= 1.2.0 required for free()
+jsonlite==2.0.0    # reads the *_counts.json / *_stats.json / *_meta.json tables
+dplyr==1.2.1       # grouping in the genetic-data and specificity renderers
+ragg==1.5.2        # AGG PNG device; correct Unicode glyph rendering
+scales==1.4.0      # axis and label formatting
+# seed=4 (fig_discordance.R) pins label layout; ggrepel-version drift is a soft failure, PNG gitignored.
+ggrepel==0.9.6
+# systemfonts/textshaping set font and glyph layout for ragg; check_r_versions.R verifies Arial Unicode MS via systemfonts::match_fonts().
+systemfonts==1.2.1 # font matching for ragg; resolves 'Arial Unicode MS'
+textshaping==1.0.0 # glyph shaping for ragg
+# See REPRODUCIBILITY.md, R (stage 2, `make figures`).
+gridtext==0.1.6    # ggtext's markdown/HTML layout + rendering engine
+ggtext==0.2.0      # element_markdown()/geom_richtext() for fig_stat4_vignette.R panel c
+# ggtext/gridtext also pull commonmark, jpeg, litedown, markdown, xfun, left unpinned since they parse text or decode the jpeg fallback rather than render glyphs (verified versions: commonmark 2.0.0, jpeg 0.1.11, litedown 0.11, markdown 2.0, xfun 0.60).

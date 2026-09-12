@@ -1,0 +1,34 @@
+{
+ "n_in_trial": 727,
+ "n_non_target": 18435,
+ "n_feat_full": 24,
+ "n_feat_genetics": 5,
+ "auc_full": 0.6364811641631682,
+ "auc_full_ci": [
+  0.6145677707421326,
+  0.6583945575842038
+ ],
+ "auc_genetics": 0.622659636501198,
+ "auc_genetics_ci": [
+  0.6003473975196546,
+  0.6449718754827415
+ ],
+ "delta": 0.013821527661970201,
+ "delta_ci95": [
+  0.003011193452903741,
+  0.02463186187103666
+ ],
+ "delong_z": 2.50590739424744,
+ "delong_p": 0.012213760405570095,
+ "config": "full = committed full_model_pu_scores.csv; genetics-only re-scored at pum.SEED/pum.T_BAG",
+ "verification": {
+  "claim": "genetics-only ranking reproduces panelD_recovery.csv recovery counts",
+  "checked_at_build_time": true,
+  "recovery_counts": {
+   "50": 5,
+   "100": 11,
+   "200": 22,
+   "500": 57
+  }
+ }
+}

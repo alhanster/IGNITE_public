@@ -1,0 +1,4 @@
+model_a,model_b,delta,nb_p,stars
+genetic,genetic+observational,0.0121609949105761,0.0264898858391544,*
+genetic,genetic+perturbational,0.013620478948292,0.0223294765996113,*
+genetic,full,0.0194012827262719,0.0091224760248361,**

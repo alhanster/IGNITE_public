@@ -1,0 +1,7 @@
+method,evaluation,auc,n_genes,n_pos,missing_policy,note
+PU full model,standard_taskA,0.636,19162,727,drop,all genes
+GPS overall,standard_taskA,0.641,19162,727,fill0,all genes
+missense-z,standard_taskA,0.606,19087,727,drop,all genes
+PU full model,leakage_controlled,0.645,18878,535,drop,GPS drug-labeled genes removed
+GPS overall,leakage_controlled,0.592,18878,535,fill0,GPS drug-labeled genes removed
+missense-z,leakage_controlled,0.602,18803,535,drop,GPS drug-labeled genes removed

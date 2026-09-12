@@ -1,0 +1,7 @@
+statistic,value
+focal_gene,STAT4
+condition,Stim48hr
+n_anchor_rows,112
+n_unlabeled_rows,7044
+knn_p95,0.234
+knn_median_unlabeled,0.029

@@ -1,0 +1,9 @@
+axis,percentile,evidence,order
+"Immune GWAS
+(genetic)",99.4,genetic,1
+"Missense constraint
+(genetic)",90.7,genetic,2
+"Th17 DE signal
+(observational)",99.4,observational,3
+"Trans-regulatory convergence
+(perturbational)",96.3,perturbational,4

@@ -1,0 +1,5 @@
+order,axis,feature,percentile,evidence
+1,Immune GWAS (genetic),gwas_score,99.4,genetic
+2,Missense constraint (genetic),mis.z_score,90.7,genetic
+3,Th17 DE signal (observational),neglog10_adjp_Th17,99.4,observational
+4,Trans-regulatory convergence (perturbational),expected_n_regulators_residuals,96.3,perturbational

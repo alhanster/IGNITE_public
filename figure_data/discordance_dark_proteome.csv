@@ -1,0 +1,6 @@
+group,n,n_dark,pct_dark,OR_vs_promoted,fisher_p
+core promoted,36,8,22.2,,
+core demoted,13,0,0.0,inf,0.067099
+concordant high (both arms >=75%),3880,236,6.1,4.412,0.001331
+coverage-matched non-discordant,11352,1083,9.5,2.709,0.018442
+all non-discordant genes,19453,2494,12.8,1.943,0.082248

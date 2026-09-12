@@ -1,0 +1,253 @@
+{
+  "source": "curated Open Targets: all_drugs_approved_and_in_trial_evidence_ot.csv (immune stage per drug)",
+  "immune_stage_metric": "per-gene furthest stage of any immune-indication drug",
+  "N_top": 50,
+  "N_ctrl_per_draw": 50,
+  "n_bootstrap": 10000,
+  "ctrl_pool_rank_min": 200,
+  "ctrl_pool_n": 18962,
+  "seed": 1234,
+  "panelC_depths": [
+    25,
+    50,
+    100
+  ],
+  "top_phI_plus": 9,
+  "top_ph3_plus": 4,
+  "top_phI_pct": 18.0,
+  "top_ph3_pct": 8.0,
+  "ctrl_phI_mean_pct": 3.7268,
+  "ctrl_phI_ci": [
+    0.0,
+    10.0
+  ],
+  "ctrl_ph3_mean_pct": 1.3528,
+  "ctrl_ph3_ci": [
+    0.0,
+    6.0
+  ],
+  "fold_phI": 4.829880862938714,
+  "fold_ph3": 5.913660555884093,
+  "bootstrap_p_phI": 0.0001,
+  "bootstrap_p_ph3": 0.0043,
+  "top_immune_genes": [
+    {
+      "gene": "TGFBR1",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "CTLA4",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "CXCR2",
+      "furthest_imm_stage": "Phase 3"
+    },
+    {
+      "gene": "CD40",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "TERT",
+      "furthest_imm_stage": "Phase 3"
+    },
+    {
+      "gene": "PIK3R1",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "IL21",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "C3",
+      "furthest_imm_stage": "Phase 3"
+    },
+    {
+      "gene": "TLR3",
+      "furthest_imm_stage": "Phase 3"
+    }
+  ],
+  "bootstrap_p_phI_bh": 0.0004,
+  "bootstrap_p_ph3_bh": 0.006880000000000001,
+  "gen_ctrl_pool_n": 18962,
+  "gen_top_phI_plus": 5,
+  "gen_top_ph3_plus": 3,
+  "gen_top_phI_pct": 10.0,
+  "gen_top_ph3_pct": 6.0,
+  "gen_ctrl_phI_mean_pct": 3.731,
+  "gen_ctrl_phI_ci": [
+    0.0,
+    10.0
+  ],
+  "gen_ctrl_ph3_mean_pct": 1.3338,
+  "gen_ctrl_ph3_ci": [
+    0.0,
+    6.0
+  ],
+  "gen_fold_phI": 2.6802465826856077,
+  "gen_fold_ph3": 4.49842555105713,
+  "gen_bootstrap_p_phI": 0.0397,
+  "gen_bootstrap_p_ph3": 0.0288,
+  "gen_top_immune_genes": [
+    {
+      "gene": "TLR3",
+      "furthest_imm_stage": "Phase 3"
+    },
+    {
+      "gene": "CD40",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "CXCR2",
+      "furthest_imm_stage": "Phase 3"
+    },
+    {
+      "gene": "CTLA4",
+      "furthest_imm_stage": "Phase 2"
+    },
+    {
+      "gene": "TERT",
+      "furthest_imm_stage": "Phase 3"
+    }
+  ],
+  "gen_bootstrap_p_phI_bh": 0.0397,
+  "gen_bootstrap_p_ph3_bh": 0.03291428571428571,
+  "depth_sweep": [
+    {
+      "depth": 25,
+      "model": "full",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 5,
+      "top_phI_pct": 20.0,
+      "ctrl_phI_mean_pct": 3.6908,
+      "ctrl_phI_ci_lo": 0.0,
+      "ctrl_phI_ci_hi": 12.0,
+      "fold_phI": 5.418879375745097,
+      "bootstrap_p_phI": 0.0019,
+      "top_ph3_plus": 2,
+      "top_ph3_pct": 8.0,
+      "ctrl_ph3_mean_pct": 1.3568,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 8.0,
+      "fold_ph3": 5.89622641509434,
+      "bootstrap_p_ph3": 0.0431,
+      "bootstrap_p_phI_bh": 0.0038
+    },
+    {
+      "depth": 25,
+      "model": "genetics_only",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 4,
+      "top_phI_pct": 16.0,
+      "ctrl_phI_mean_pct": 3.7888,
+      "ctrl_phI_ci_lo": 0.0,
+      "ctrl_phI_ci_hi": 12.0,
+      "fold_phI": 4.222972972972973,
+      "bootstrap_p_phI": 0.0133,
+      "top_ph3_plus": 2,
+      "top_ph3_pct": 8.0,
+      "ctrl_ph3_mean_pct": 1.3576,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 8.0,
+      "fold_ph3": 5.892751915144372,
+      "bootstrap_p_ph3": 0.0468,
+      "bootstrap_p_phI_bh": 0.01773333333333333
+    },
+    {
+      "depth": 50,
+      "model": "full",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 9,
+      "top_phI_pct": 18.0,
+      "ctrl_phI_mean_pct": 3.7268,
+      "ctrl_phI_ci_lo": 0.0,
+      "ctrl_phI_ci_hi": 10.0,
+      "fold_phI": 4.829880862938714,
+      "bootstrap_p_phI": 0.0001,
+      "top_ph3_plus": 4,
+      "top_ph3_pct": 8.0,
+      "ctrl_ph3_mean_pct": 1.3528,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 6.0,
+      "fold_ph3": 5.913660555884093,
+      "bootstrap_p_ph3": 0.0043,
+      "bootstrap_p_phI_bh": 0.0004
+    },
+    {
+      "depth": 50,
+      "model": "genetics_only",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 5,
+      "top_phI_pct": 10.0,
+      "ctrl_phI_mean_pct": 3.731,
+      "ctrl_phI_ci_lo": 0.0,
+      "ctrl_phI_ci_hi": 10.0,
+      "fold_phI": 2.6802465826856077,
+      "bootstrap_p_phI": 0.0397,
+      "top_ph3_plus": 3,
+      "top_ph3_pct": 6.0,
+      "ctrl_ph3_mean_pct": 1.3338,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 6.0,
+      "fold_ph3": 4.49842555105713,
+      "bootstrap_p_ph3": 0.0288,
+      "bootstrap_p_phI_bh": 0.0397
+    },
+    {
+      "depth": 100,
+      "model": "full",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 14,
+      "top_phI_pct": 14.0,
+      "ctrl_phI_mean_pct": 3.7174,
+      "ctrl_phI_ci_lo": 1.0,
+      "ctrl_phI_ci_hi": 8.0,
+      "fold_phI": 3.7660730618173996,
+      "bootstrap_p_phI": 0.0,
+      "top_ph3_plus": 4,
+      "top_ph3_pct": 4.0,
+      "ctrl_ph3_mean_pct": 1.3496,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 4.0,
+      "fold_ph3": 2.963841138114997,
+      "bootstrap_p_ph3": 0.046,
+      "bootstrap_p_phI_bh": 0.0
+    },
+    {
+      "depth": 100,
+      "model": "genetics_only",
+      "ctrl_pool_n": 18962,
+      "top_phI_plus": 11,
+      "top_phI_pct": 11.0,
+      "ctrl_phI_mean_pct": 3.7367,
+      "ctrl_phI_ci_lo": 1.0,
+      "ctrl_phI_ci_hi": 8.0,
+      "fold_phI": 2.9437739181630853,
+      "bootstrap_p_phI": 0.0012,
+      "top_ph3_plus": 6,
+      "top_ph3_pct": 6.0,
+      "ctrl_ph3_mean_pct": 1.3173,
+      "ctrl_ph3_ci_lo": 0.0,
+      "ctrl_ph3_ci_hi": 4.0,
+      "fold_ph3": 4.554771122751082,
+      "bootstrap_p_ph3": 0.0017,
+      "bootstrap_p_phI_bh": 0.0031999999999999997
+    }
+  ],
+  "shared_by_depth": [
+    {
+      "depth": 25,
+      "n_shared": 12
+    },
+    {
+      "depth": 50,
+      "n_shared": 27
+    },
+    {
+      "depth": 100,
+      "n_shared": 52
+    }
+  ],
+  "n_top50_shared": 27
+}

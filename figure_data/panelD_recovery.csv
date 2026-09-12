@@ -1,0 +1,5 @@
+k,depth,genetics,genetics_perturbseq,gain
+50,top-50,5,9,4
+100,top-100,11,14,3
+200,top-200,22,27,5
+500,top-500,57,63,6

@@ -1,0 +1,11 @@
+feature_1,feature_2,axis_1,axis_2,relation,n,spearman_rho,spearman_p,pearson_r,shared_variance_pct_spearman
+gnomAD LOEUF,IEI gene membership,evolutionary constraint,rare-variant (curated),cross-axis,17960,-0.0554,1.13e-13,-0.036,0.31
+gnomAD LOEUF,rare-variant burden score,evolutionary constraint,rare-variant (burden),cross-axis,17960,-0.0105,1.60e-01,-0.0019,0.01
+gnomAD LOEUF,immune-GWAS score,evolutionary constraint,common-variant,cross-axis,17960,-0.1148,8.72e-54,-0.0742,1.32
+gnomAD missense z,IEI gene membership,evolutionary constraint,rare-variant (curated),cross-axis,19427,0.0439,8.88e-10,0.035,0.19
+gnomAD missense z,rare-variant burden score,evolutionary constraint,rare-variant (burden),cross-axis,19427,0.0294,4.07e-05,0.0149,0.09
+gnomAD missense z,immune-GWAS score,evolutionary constraint,common-variant,cross-axis,19427,0.0496,4.66e-12,0.0416,0.25
+IEI gene membership,rare-variant burden score,rare-variant (curated),rare-variant (burden),cross-axis,19502,0.0583,3.52e-16,0.0753,0.34
+IEI gene membership,immune-GWAS score,rare-variant (curated),common-variant,cross-axis,19502,0.0611,1.33e-17,0.096,0.37
+rare-variant burden score,immune-GWAS score,rare-variant (burden),common-variant,cross-axis,19502,0.0111,1.21e-01,0.0427,0.01
+gnomAD LOEUF,gnomAD missense z,evolutionary constraint,evolutionary constraint,within-axis,17959,-0.7079,0.00e+00,-0.37,50.11

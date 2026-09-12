@@ -1,0 +1,10 @@
+statistic,model,value,ci_lo,ci_hi
+n_in_trial,,727,,
+n_non_target,,18435,,
+n_features,full,24,,
+n_features,genetics,5,,
+auc,full,0.6364811641631682,0.6145677707421326,0.6583945575842038
+auc,genetics,0.622659636501198,0.6003473975196546,0.6449718754827415
+auc_delta,full - genetics,0.013821527661970201,0.003011193452903741,0.02463186187103666
+delong_z,full vs genetics,2.50590739424744,,
+delong_p,full vs genetics,0.012213760405570095,,

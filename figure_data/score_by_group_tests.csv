@@ -1,0 +1,7 @@
+test,group_a,group_b,statistic,value,p,p_holm,stars
+Kruskal-Wallis,,,H,486.2463150975796,2.5879403005502575e-106,,
+one-way ANOVA,,,F,352.67386521159966,3.474471667629887e-151,,
+Mann-Whitney (one-sided),in-trial,non-target,U,8521039.0,7.922185014504778e-36,,
+Mann-Whitney (two-sided),non-target,in-trial,U,4881206.0,1.5844370029009556e-35,3.168874005801911e-35,****
+Mann-Whitney (two-sided),non-target,approved,U,1300989.0,1.7496214410969522e-76,5.248864323290857e-76,****
+Mann-Whitney (two-sided),in-trial,approved,U,81519.0,2.9742971867344836e-19,2.9742971867344836e-19,****

@@ -1,0 +1,3 @@
+direction,n_genes,n_mapped,n_edges,n_connected,null_mean_edges,null_max_edges,fold,p_empirical,n_null_draws
+promoted,36,36,30,14,2.592,12,11.574074074074074,0.001996007984031936,500
+demoted,13,13,1,2,0.798,6,1.2531328320802004,0.49700598802395207,500

@@ -1,0 +1,16 @@
+# The three supplementary display figures, in manuscript order.
+#
+# This file is the sole source for S-numbers. tools/package_supplementary_figures.py (via the final-outputs and supplementary Makefile targets) and tools/write_submission_readme.py all read it, so an S-number changes here only.
+#
+# The held-out in-trial AUC figure is not a row here: it is no longer a numbered display item, and its statistics ship instead as the ROC and discrimination sheets of Supplementary Table 7, sourced from figure_data/.
+#
+# `source` is relative to final_plots/. S1 is the one supplementary figure that lives directly in final_plots/ rather than final_plots/supplementary/, since it renders alongside the main set but ships as a supplementary item.
+#
+# `submission_name` is the filename `make final-outputs` publishes and is recorded verbatim rather than derived from the other columns, since not all entries follow the same naming pattern. The supplementary/ tree separately builds "Supp Figure <number> - <title>.png" from the number and title columns, matching the "Supp Table <number> - <title>.csv" naming used for tables.
+#
+# Columns are TAB-separated.
+#
+# number	source	title	submission_name
+1	figure_label_permutation.png	Label-permutation and scrambled-feature nulls	S1_label_perm_scram_feat.png
+2	supplementary/figure_discordance_genetics_vs_full.png	Discordant Genes	S2_discordance_genetics_vs_full.png
+3	supplementary/leakage_controlled_comparison.png	Model Comparisons	S3_leakage_controlled_comparison.png

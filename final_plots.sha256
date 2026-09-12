@@ -1,0 +1,64 @@
+# IGNITE final_plots output baseline
+#
+# date:     2026-09-12T15:52:34Z
+# xgboost:  3.3.0   (pinned in requirements.txt; enforced by src/analysis/_version_guard.py)
+# R:        4.4.1 with ggplot2 4.0.3   (pinned in R-requirements.txt; checked by make check-versions)
+#
+# produced: git clone <IGNITE> /tmp/verify && cd /tmp/verify && \
+#             make tables PY=<pinned-python> RSCRIPT=<pinned-rscript> && \
+#             make figures PY=<pinned-python> RSCRIPT=<pinned-rscript> && \
+#             tools/write_baseline.sh <pinned-python> <pinned-rscript>
+#
+# IMPORTANT: the regenerated files hashed below are BUILD OUTPUTS. They are
+# gitignored and are NOT in the commit -- you cannot 'git checkout' them. Rebuild
+# with `make figures` (fast, no model fitting) and check with `make verify`.
+#
+# THE R VERSION ABOVE IS LOAD-BEARING. Rendering libraries change pixel output
+# between releases and nothing guards R at render time, so a mismatched R stack
+# produces figure mismatches that look like code regressions. Run
+# `make check-versions` first; it checks both stacks.
+#
+# WHAT THIS FILE DOES AND DOES NOT PROVE. Under the pinned R stack recorded above,
+# the PNG hashes DO reproduce: 10 of 10 were byte-identical across two independent
+# clones rendered through `make figures`. So a PNG mismatch on this machine is a real
+# signal, usually a render that did not resolve .rlib and used a different ragg.
+# What is not pinnable is the native rasterization stack -- ragg goes through
+# freetype/libpng and the installed fonts (see R-requirements.txt) -- so a DIFFERENT
+# MACHINE can reproduce every NUMBER exactly and still fail these hashes.
+#
+# So `make verify-figures` reports rendered-PNG differences without failing, and the
+# portable claim lives in `make verify-tables`: figure_data/ byte-identical to the
+# commit after a rebuild. That is the check to trust for reproduction; this one is a
+# same-machine regression check plus a tamper check on the artifacts no script can
+# rebuild.
+#
+# 20 files: 20 regenerated outputs (the reproducibility-relevant subset),
+# 0 frozen artifacts with no producing script, and 0 figure-provenance docs.
+# Those three counts are COMPUTED, not typed.
+#
+# Was 38 before the two-stage restructure. What left, and why:
+#   5  internal working documents, moved out of the repository entirely
+#   1  causal_functional_genomics.png, dropped with its renderer as a strict subset
+#      of the _with_thde figure
+#   1  the pipeline schematic, DELETED -- stale depth=3 artwork, no producing script
+#
+a9f7f086e15aa0c028942016f84582164e519f845b22d3e3de4d6f2e3b8ab60e  final_plots/figure_label_permutation.png
+4e39fcbb99485d4c4e266c54eebfc1c78c7848242a3531e56e9995a62e3ea8a8  final_plots/figure_model_analysis_composite.png
+06284ecbfa2caf4e6c24c3a82c085c6c10368a363c35715de953b62bf9961c80  final_plots/figure_prospective_temporal_holdout.png
+2da5fac65268084544def637caae4ec132ad52cccb4efd455f3bf5c6768c7f29  final_plots/figure_stat4_vignette.png
+c3e389a3e01ba513a46a4a3ab82125130e17ac4b9cd5f80ddc1325ef2aa629d1  final_plots/figure_trial_validation_immune_stages_R.png
+102016420a7bd357c3bf087e2910cda1c1c25de313afcc6b2e80cb0c6c363fa7  final_plots/genetic_data.png
+0a0f8de687910dd135c123e1844b9cc38315a6b3b6fba4d7c77704e1e6585f59  final_plots/pdf/figure_discordance_genetics_vs_full.pdf
+5f2738eadac0d8e9f3f83d103d345e5244a5f489032ca4a9633cde594540a080  final_plots/pdf/figure_label_permutation.pdf
+8b52f56c7b2caffebc0cb438650ec64fe134a8005994b314523a4af16a262779  final_plots/pdf/figure_model_analysis_composite.pdf
+eabf309d6fdd5d670cb0e6335c7c2cef3838a1dcd6e7cfe08d74c9784a567c0c  final_plots/pdf/figure_prospective_temporal_holdout.pdf
+10c08b1508ab73b39d04a37f3bde97c3f145a1b899530bf008d90d92a0b9893e  final_plots/pdf/figure_stat4_vignette.pdf
+5ecfcc5ce19a62534e93dbc44722c3b691afd0e54536d2888879c79d7fcc80f8  final_plots/pdf/figure_trial_validation_immune_stages_R.pdf
+aeb2277f352e08e15bb4cadb9d9a4cf9fa48e300004784f45c8df7783cad132a  final_plots/pdf/genetic_data.pdf
+ce006740f165bc0a5ca49acc88c02540bef23a1e2a3e395de9bcdda788cef903  final_plots/pdf/leakage_controlled_comparison.pdf
+08c6424da2780039e02f25bb25fad12994067a30fe7a9afe0b2ee3f919afb14d  final_plots/pdf/perturbational_functional_genomics_with_thde.pdf
+e4c809189c56a39342388984c16cb56c571be2adf68f69c27058b46f908cb1de  final_plots/pdf/specificity_immune_vs_cardiac_faceted.pdf
+64c0f21c4d7717db08e9afabf322f07640c28d3d18073eba1572cc63fb80401a  final_plots/perturbational_functional_genomics_with_thde.png
+76f491a839ea13227888fa8525ea7e125f5ada3835ca7b0f85d5632b745b12f3  final_plots/specificity_immune_vs_cardiac_faceted.png
+024e8a3e83c7a928070340522a72be29dba05f813806e735cdfa27d96d49c928  final_plots/supplementary/figure_discordance_genetics_vs_full.png
+ba6b5e41864cf4f6fae5f0b2edb2bf6f1034704b6f7af15e55e165e03b62b178  final_plots/supplementary/leakage_controlled_comparison.png

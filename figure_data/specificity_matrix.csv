@@ -1,0 +1,7 @@
+recover,score,auc,ci_lo,ci_hi,n_pos,ci
+immune_exclusive,our_model,0.672,0.644,0.701,372,0.672 (0.644-0.701)
+immune_exclusive,OT_genetic_immune,0.582,0.552,0.611,372,0.582 (0.552-0.611)
+immune_exclusive,OT_genetic_cardiac,0.518,0.488,0.545,372,0.518 (0.488-0.545)
+cardiac_exclusive,our_model,0.581,0.527,0.63,114,0.581 (0.527-0.630)
+cardiac_exclusive,OT_genetic_immune,0.556,0.507,0.606,114,0.556 (0.507-0.606)
+cardiac_exclusive,OT_genetic_cardiac,0.68,0.626,0.733,114,0.680 (0.626-0.733)

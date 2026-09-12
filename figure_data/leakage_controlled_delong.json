@@ -1,0 +1,29 @@
+{
+ "comparison": "PU full model vs GPS overall, paired DeLong, per evaluation arm",
+ "n_feat_full": 24,
+ "arms": {
+  "standard_taskA": {
+   "n_genes": 19162,
+   "n_pos": 727,
+   "auc_pu": 0.6364811641631681,
+   "auc_gps": 0.6410959880229021,
+   "delta": -0.004614823859733996,
+   "z": -0.35649076597268975,
+   "p": 0.7214730661681306,
+   "p_holm": 0.7214730661681306,
+   "stars": "ns"
+  },
+  "leakage_controlled": {
+   "n_genes": 18878,
+   "n_pos": 535,
+   "auc_pu": 0.6450824144890129,
+   "auc_gps": 0.5924324183867029,
+   "delta": 0.052649996102310026,
+   "z": 3.6223603841632457,
+   "p": 0.0002919270292188363,
+   "p_holm": 0.0005838540584376726,
+   "stars": "***"
+  }
+ },
+ "note": "Paired DeLong on the shared gene set, one entry per arm. Closes gap #1 of final_plots/supplementary/README_gps_leakage_controlled.md, which flagged that the headline contrast had no significance test. The standard arm was added 2026-08-31 so the figure could mark it too."
+}

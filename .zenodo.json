@@ -1,0 +1,21 @@
+{
+  "title": "IGNITE: Immune Genomics and fuNctional Integration for Target Enrichment",
+  "description": "Code and data accompanying the manuscript \"Genome-scale perturbation signatures from primary human CD4+ T cells improve genetics-based prioritization of immune drug targets\". A positive-unlabeled learning model that ranks immune drug-target candidates across 19,502 genes and 24 features, integrating rare- and common-variant genetic evidence and evolutionary constraint with perturbational functional genomics from genome-scale CRISPRi perturb-seq in primary human CD4+ T cells.",
+  "upload_type": "software",
+  "license": "mit",
+  "creators": [
+    {
+      "name": "Han, Alexander L.",
+      "affiliation": "University of Michigan Medical School",
+      "orcid": "0000-0002-2516-2343"
+    }
+  ],
+  "keywords": [
+    "drug target prioritisation",
+    "immunology",
+    "functional genomics",
+    "perturb-seq",
+    "positive-unlabeled learning",
+    "human genetics"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+ "knn_p95": 0.234,
+ "knn_median_unlabeled": 0.029,
+ "condition": "Stim48hr",
+ "focal": "STAT4",
+ "n_anchor_rows": 112,
+ "n_unlabeled_rows": 7044
+}

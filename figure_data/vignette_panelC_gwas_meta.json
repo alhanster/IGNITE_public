@@ -1,0 +1,15 @@
+{
+ "ot_release": "26.06",
+ "target": "ENSG00000138378",
+ "symbol": "STAT4",
+ "datasource": "gwas_credible_sets",
+ "immune_subtree": "MONDO_0005046",
+ "feature_definition": "gwas_credible_sets score for STAT4 x MONDO_0005046",
+ "gwas_score_feature_value": 0.8311524998689545,
+ "n_diseases_total": 1164,
+ "approved_drugs": 0,
+ "n_diseases_with_gwas_evidence": 46,
+ "n_contributing_diseases": 21,
+ "n_credible_sets_total": 115,
+ "contributor_rule": "evidence rolled into the immune subtree with enableIndirect=true, traced from the evidence endpoint rather than inferred from ancestor lists"
+}

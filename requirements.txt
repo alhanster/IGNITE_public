@@ -1,0 +1,21 @@
+# Requires Python >=3.12: xgboost 3.3.0 has no wheel below 3.12, so 3.11 misreports the pin as unsatisfiable.
+# python_requires: >=3.12
+
+# See REPRODUCIBILITY.md, Python (stage 1, `make tables`).
+numpy==2.4.6           # verified; float ops throughout the PU-bagging path
+pandas==3.0.5          # verified; every table read/write
+scipy==1.18.0          # verified; Fisher exact (IEI), Wilcoxon/permutation (attribution)
+scikit-learn==1.9.0    # verified; CV splitting and AUC
+xgboost==3.3.0         # base learner (pu_target_model.py). A minor bump moves STAT4 rank 9 -> 11
+                       # A mismatched pin can change results deterministically with no error; enforced at import by src/analysis/_version_guard.py.
+pyarrow==25.0.0        # verified; parquet engine for pu_model_matrix.parquet (used via pandas)
+matplotlib==3.11.0     # diagnostic plots only, from pu_target_model.py and
+                       # Unhashed (stage-2 rendering is R, output gitignored) but pinned: matplotlib stamps its version into the PNG tEXt chunk.
+
+# See REPRODUCIBILITY.md, Opt-in targets.
+h5py                   # HTTP-range reads of the perturb-seq h5ad
+requests               # fetching source effect matrices / Open Targets refresh
+openpyxl               # xlsx engine for the opt-in GPS input rebuild
+
+# Test-only; imported by no build step. Required by `make test`.
+pytest                 # tests/test_reproduction_contracts.py

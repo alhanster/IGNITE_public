@@ -1,0 +1,14 @@
+{
+  "full_above_chance": 0.2876226806426395,
+  "shapley_total": 0.2876226806426395,
+  "coalition_auc": {
+    "chance": 0.5,
+    "genetic": 0.7682213979163676,
+    "perturbational": 0.5875580018826082,
+    "observational": 0.6272846726973946,
+    "genetic+perturbational": 0.7818418768646596,
+    "genetic+observational": 0.7803823928269437,
+    "observational+perturbational": 0.6420132101660844,
+    "genetic+observational+perturbational": 0.7876226806426395
+  }
+}

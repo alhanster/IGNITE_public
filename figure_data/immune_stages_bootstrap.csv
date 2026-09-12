@@ -1,0 +1,5 @@
+model,threshold,observed_count,observed_pct,expected_count,expected_pct,ci95_lo_pct,ci95_hi_pct,fold_enrichment,p_bootstrap,p_bootstrap_bh,n_top,n_ctrl_per_draw,n_bootstrap,ctrl_pool_rank_min,ctrl_pool_n,seed
+full,Phase >= 1 (any immune trial),9,18.0,1.8634,3.7268,0.0,10.0,4.829880862938714,0.0001,0.0004,50,50,10000,200,18962,1234
+full,Phase >= 3 (advanced immune trial),4,8.0,0.6764,1.3528,0.0,6.0,5.913660555884093,0.0043,0.006880000000000001,50,50,10000,200,18962,1234
+genetics_only,Phase >= 1 (any immune trial),5,10.0,1.8655,3.731,0.0,10.0,2.6802465826856077,0.0397,0.0397,50,50,10000,200,18962,1234
+genetics_only,Phase >= 3 (advanced immune trial),3,6.0,0.6668999999999999,1.3338,0.0,6.0,4.49842555105713,0.0288,0.03291428571428571,50,50,10000,200,18962,1234
