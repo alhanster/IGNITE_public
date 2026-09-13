@@ -4,8 +4,6 @@
 Runs as part of `make tables`, after build_ranked_atlas_table.py; reshapes outputs already written by make_enrichment_table.py, build_genetic_data_tables.py and build_perturbational_fg_tables.py. Reshaping only, with six exceptions: univariate_gwas_tests.csv, univariate_mis_z_tests.csv, univariate_th_de_fdr_enrichment.csv, univariate_residual_tests.csv, univariate_cytokine_distribution.csv and univariate_cytokine_regulator_fraction.csv test hypotheses no upstream script asks. All six are computed here rather than upstream because their inputs are the panels' own committed sheets, so none can disagree with Figures 2 and 3 as drawn, and all rebuild on a clone with no perturb-seq inputs. Between them they carry the statistics for every panel of both figures except 2a, whose Fisher enrichment make_enrichment_table.py already writes.
 
 Outputs (15 sheets): univariate_iei_enrichment.csv, univariate_gwas.csv, univariate_gwas_pct_gt0.csv, univariate_gwas_tests.csv, univariate_mis_z.csv, univariate_mis_z_tests.csv, univariate_th_de.csv, univariate_th_de_fdr_enrichment.csv, univariate_residual.csv, univariate_residual_tests.csv, univariate_cytokines.csv, univariate_cytokine_receptors.csv, univariate_cytokine_distribution.csv, univariate_cytokine_regulator_fraction.csv, univariate_group_n.csv.
-
-See REPRODUCIBILITY.md, Supplementary tables, for reproduction caveats and the group-label vocabulary, and REPRODUCIBILITY.md, Multiple-testing correction, for the six Holm family definitions this module adds.
 """
 import math
 import os
@@ -43,7 +41,7 @@ TH_LABELS = ["Th1", "Th2", "Th17", "Treg"]
 # Each target class is its own pre-specified family of four subsets, corrected independently:
 # the claim is per class ("approved targets are enriched in Th1"), so a class's four subsets are
 # what must hold together, and the two classes are not a single screen over eight cells. See
-# REPRODUCIBILITY.md, Multiple-testing correction.
+# REPRODUCIBILITY.md.
 FDR_TARGET_CLASSES = ["approved", "in-trial"]
 
 
@@ -131,8 +129,7 @@ def cytokine_regulator_fraction(sheets):
     left to `mean_nonzero` on the distribution sheet rather than tested, since the non-zero
     subsets run to a few dozen genes.
 
-    Holm spans the two target classes within one condition -- six families of two. See
-    REPRODUCIBILITY.md, Multiple-testing correction, for why the family stops at the condition.
+    Holm spans the two target classes within one condition -- six families of two.
     """
     rows = []
     for panel, fname in CYT_PANELS:
@@ -222,7 +219,7 @@ def residual_group_tests(res):
     Kruskal-Wallis and ANOVA rows are.
 
     Holm spans the three pairwise tests only -- one family, matching build_score_by_group.py's
-    identically shaped Figure 7 comparison. See REPRODUCIBILITY.md, Multiple-testing correction.
+    identically shaped Figure 7 comparison. See REPRODUCIBILITY.md.
     """
     g = {k: d["residual"].to_numpy() for k, d in res.groupby("group")}
     missing = {a for pair in RESIDUAL_PAIRS for a in pair} - set(g)
@@ -329,7 +326,7 @@ def gwas_tests(sheets):
     The two blocks answer different questions and are corrected separately, three tests each.
     Reading only one of them is what misleads: on presence the two target classes are
     indistinguishable from each other, while on magnitude approved exceeds in-trial. See
-    REPRODUCIBILITY.md, Multiple-testing correction.
+    REPRODUCIBILITY.md.
     """
     df = sheets["univariate_gwas.csv"]
     g_all = {k: d[GWAS_VALUE].to_numpy() for k, d in df.groupby("group")}
@@ -438,7 +435,6 @@ def main():
     sheets = {}
 
     # Fig 2a: IEI enrichment vs both backgrounds.
-    # See REPRODUCIBILITY.md, Supplementary tables, for the relabeling rationale and the BACKGROUND-row handling.
     iei = regroup(pd.read_csv(fd("iei_enrichment_forest.csv")), REMAP_ENRICH)
     sheets["univariate_iei_enrichment.csv"] = iei[
         ["group", "background", "n", "n_iei", "OR", "OR_lo", "OR_hi", "p", "p_holm"]]

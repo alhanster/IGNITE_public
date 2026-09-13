@@ -28,7 +28,7 @@ FOCAL = "STAT4"
 MODEL_FIELDS = ("stat4_score", "stat4_rank", "approved_median")
 # Local name differs from the PANELC_META key: named for content (OT associations for STAT4), not use.
 PANELC_FIELDS = {"ot_diseases": "n_diseases_total", "approved_drugs": "approved_drugs"}
-# See PROVENANCE.md, STAT4 vignette — `final_plots/figure_stat4_vignette.png`.
+# See PROVENANCE.md.
 PRESERVED = ("gwas_total",)
 # Key order is pinned explicitly: json.dump keeps insertion order and verify-tables byte-compares it.
 KEY_ORDER = ("stat4_score", "approved_median", "stat4_rank", "knn_p95", "gwas_total",
@@ -52,7 +52,7 @@ def main():
             "recomputes" % SEED_META)
     meta = json.load(open(SEED_META))
 
-    # See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+    # See REPRODUCIBILITY.md.
     for pth, why in ((KNN_STATS, "knn_p95, panel d's reference line"),
                      (PANELC_META, "ot_diseases / approved_drugs, no longer drawn but "
                                    "still byte-verified in vignette_meta.json")):

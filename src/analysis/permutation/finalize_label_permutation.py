@@ -1,5 +1,5 @@
 """Recompute label_permutation_pvalues.csv from an existing null table.
-See REPRODUCIBILITY.md, permutation-null / permutation-null-finalize.
+See REPRODUCIBILITY.md.
 
 Usage: python finalize_label_permutation.py
 """

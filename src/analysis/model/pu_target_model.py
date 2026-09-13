@@ -19,7 +19,7 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import KFold, StratifiedKFold
 from sklearn.metrics import roc_auc_score
 
-# See REPRODUCIBILITY.md, Python (stage 1, `make tables`).
+# See REPRODUCIBILITY.md.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
 from _version_guard import check_pins  # noqa: E402
@@ -48,7 +48,7 @@ META = ["gene", "pu_role", "furthest_stage", "crossdonor_correlation_mean"]
 
 
 def base_learner(seed):
-    # See REPRODUCIBILITY.md, Cross-validation and seeds.
+    # See REPRODUCIBILITY.md.
     return XGBClassifier(n_estimators=120, max_depth=int(os.environ.get("MODEL_MAX_DEPTH", "2")),
                          learning_rate=0.1,
                          subsample=0.8, colsample_bytree=0.8, eval_metric="logloss",
@@ -203,7 +203,7 @@ def main():
     out["rank"] = np.arange(1, len(out) + 1)
     out.to_csv(OUT_RANK, index=False)
 
-    # See REPRODUCIBILITY.md, The two-stage build and the figure_data contract.
+    # See REPRODUCIBILITY.md.
     os.makedirs(FIGDATA, exist_ok=True)
     out[["gene", "pu_score"]].to_csv(OUT_SCORE_HIST, index=False)
 

@@ -1,6 +1,10 @@
-# src/figures — stage 2 renderers
+# src/figures — stage 2
 
-## Renderers
+10 R renderers. Each reads `figure_data/` and nothing else, and writes its deliverable directly into `final_plots/`. Every count, star, p-value and threshold is precomputed by stage 1, so a figure needing a new number needs a stage-1 change.
+
+Run with `make figures` (~15 s, no model fitting).
+
+# Renderers
 
 | Script | Manuscript figure | Output under `final_plots/` |
 |---|---|---|
@@ -15,31 +19,25 @@
 | `fig_discordance.R` | Supplementary Figure 2 | `supplementary/figure_discordance_genetics_vs_full.png` |
 | `fig_leakage_controlled.R` | Supplementary Figure 3 | `supplementary/leakage_controlled_comparison.png` |
 
-`tools/supplementary_figures.tsv` is the single source for the S-numbers. `make supplementary`
-re-renders only the three supplementary renderers, listed as `SUPP_RENDERERS_R` in the Makefile.
+- `tools/supplementary_figures.tsv` is the single source for the S-numbers.
+- `make supplementary` re-renders only the three supplementary renderers, listed as `SUPP_RENDERERS_R` in the Makefile, and writes to its own `supplementary/` tree.
+- Each renderer writes a `.png`. On macOS it also writes a vector `.pdf` to `final_plots/pdf/`; other platforms produce the PNG only.
+- Numbered supplementary tables are packaged from `figure_data/` by `tools/package_supplementary_tables.py` and never pass through `final_plots/`.
 
-Each renderer writes a `.png`. On macOS it also writes a vector `.pdf` to `final_plots/pdf/`;
-other platforms produce the PNG only.
-
-## Shared helpers
+# Shared helpers
 
 | File | Provides |
 |---|---|
 | `palette.R` | `TARGET_COLORS`, the drug-status colour mapping shared across figures |
-| `vector_output.R` | `save_figure(plot, out_png, out_pdf, width_cm, height_cm)`, which writes the PNG through the ragg AGG device and the PDF through a quartz device (macOS only) |
+| `vector_output.R` | `save_figure(plot, out_png, out_pdf, width_cm, height_cm)` — PNG through the ragg AGG device, PDF through quartz (macOS only) |
 
-## Environment
+# Environment
 
-The R package pins are in `R-requirements.txt` and are checked by `tools/check_r_versions.R`
-(`make check-versions`). `make setup` provisions them into `.rlib/`, which the Makefile adds to
-the R library path when present. Font handling matters here: `systemfonts` and `textshaping`
-determine glyph layout for the ragg device, and are pinned for that reason.
+- R 4.4.1 and the package pins in `R-requirements.txt`, checked by `tools/check_r_versions.R` (`make check-versions`).
+- `make setup` provisions them into `.rlib/`, which the Makefile adds to the R library path when present.
+- `systemfonts` and `textshaping` determine glyph layout for the ragg device and are pinned for that reason. `ggtext` and `gridtext` back `fig_stat4_vignette.R` panel c.
+- Exact versions and system-library notes are in `REPRODUCIBILITY.md`.
 
-## Figure verification
+# Verification
 
-`make verify-figures` compares `final_plots/` against `final_plots.sha256`. Under the pinned R
-stack PNG bytes reproduce; a differing PNG usually means the render did not use `.rlib/`, or ran
-on a machine with a different font and rasterization stack. PDFs carry a creation timestamp, so
-they differ on every render. Differing PNGs and PDFs are reported but do not fail the gate. It
-fails when a baseline file is missing or when `final_plots/` contains a file the baseline does not
-list. See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.
+`make verify-figures` compares `final_plots/` against `final_plots.sha256`. Differing PNGs and PDFs are reported but do not fail the gate; it fails when a baseline file is missing or when `final_plots/` contains a file the baseline does not list. Under the pinned R stack PNG bytes reproduce on the same machine; a differing PNG usually means the render did not use `.rlib/`. PDFs carry a creation timestamp, so they differ on every render.

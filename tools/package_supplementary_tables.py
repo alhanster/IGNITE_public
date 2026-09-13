@@ -3,7 +3,7 @@
 
 Called by make final-outputs (writes to final_outputs/supplementary_tables/, the default) and by make supplementary (writes to supplementary/tables/, via --out-dir). Reads tools/supplementary_tables.tsv, the manifest that sets each table's number and display name, and copies each source file under its manuscript name. The folder README only points to Supplementary Information.pdf, which describes each table.
 
-See REPRODUCIBILITY.md, Numbered supplementary tables, for the design rationale.
+See tools/supplementary_tables.tsv for why workbooks are assembled here rather than stored in figure_data/.
 
 Run: PYTHONPATH=src .venv/bin/python tools/package_supplementary_tables.py
 """
@@ -28,12 +28,12 @@ PLATFORM_STATEMENT = (
     '(Supplementary Fig. S2 and Supplementary Table 9), the core gene set and features near '
     'the FDR threshold may differ.')
 
-# Sourced from figure_data/, not final_plots/supplementary/. See REPRODUCIBILITY.md, Numbered supplementary tables, for rationale.
+# Sourced from figure_data/, not final_plots/supplementary/.
 SUPP = os.path.join(ROOT, "figure_data")
 # Default directory preserves make final-outputs' prior behavior; make supplementary overrides it via --out-dir.
 DEFAULT_OUT = os.path.join("final_outputs", "supplementary_tables")
 
-# A supplementary source with no producer script is never assigned a table number. See PROVENANCE.md, Written by stage 1 (87 files), for what each table is.
+# A supplementary source with no producer script is never assigned a table number.
 
 # Filenames with characters illegal for submission portals or Windows are flagged as an error, not rewritten automatically.
 ILLEGAL = set('/\\:*?"<>|')

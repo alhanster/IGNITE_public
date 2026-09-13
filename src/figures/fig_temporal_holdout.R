@@ -6,7 +6,6 @@
 # across freeze years.
 #
 # Inputs are written by build_temporal_holdout.py to figure_data/.
-# See REPRODUCIBILITY.md, Temporal holdout (T0) labels, for the split and file-naming details.
 
 for (loc in c("en_US.UTF-8", "C.UTF-8", "UTF-8")) {
   if (suppressWarnings(Sys.setlocale("LC_ALL", loc)) != "") break

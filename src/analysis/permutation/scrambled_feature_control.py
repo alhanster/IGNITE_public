@@ -1,7 +1,5 @@
 """Scrambled-feature control for the functional-genomics AUC increment.
 
-See REPRODUCIBILITY.md, Other significance tests, for the rationale and cost details.
-
 Inputs:
   data/perturbseq/pu/pu_model_matrix.parquet
 

@@ -3,7 +3,7 @@
 
 Fetches, from Open Targets, the diseases and credible sets contributing to STAT4's gwas_credible_sets score against MONDO:0005046, and writes the per-disease composition used to draw the panel.
 
-See REPRODUCIBILITY.md, vignette-panelc.
+See REPRODUCIBILITY.md.
 """
 import argparse
 import json

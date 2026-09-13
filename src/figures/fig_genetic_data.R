@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# See REPRODUCIBILITY.md, Figure and table numbering.
+# See REPRODUCIBILITY.md.
 
 for (loc in c("en_US.UTF-8", "C.UTF-8", "UTF-8")) {
   if (suppressWarnings(Sys.setlocale("LC_ALL", loc)) != "") break

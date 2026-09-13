@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Prints the best Python interpreter for this repo, or nothing if none qualifies.
-# See REPRODUCIBILITY.md, Python (stage 1, `make tables`).
+# See REPRODUCIBILITY.md.
 #
 # Usage: tools/detect_python.sh   # prints e.g. "python3.12", or nothing
 set -u

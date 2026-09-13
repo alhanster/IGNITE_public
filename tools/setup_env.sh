@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Provisions both stacks into project-local directories: .venv/ and .rlib/. See REPRODUCIBILITY.md, Environment layout and overrides, for the rationale.
+# Provisions both stacks into project-local directories: .venv/ and .rlib/.
 #
 # Usage: tools/setup_env.sh [--python-only|--r-only]
 #
@@ -106,7 +106,7 @@ EOF
     echo "  C++ toolchain: OK"
   fi
 
-  # See REPRODUCIBILITY.md, R (stage 2, `make figures`), for the freetype/harfbuzz probe details.
+  # See REPRODUCIBILITY.md for the freetype/harfbuzz probe details.
   BP="$(brew --prefix 2>/dev/null || echo /opt/homebrew)"
   probe_cflags="-I$BP/include -I$BP/include/freetype2 -I$BP/include/harfbuzz"
   if command -v pkg-config >/dev/null 2>&1; then
@@ -226,7 +226,7 @@ if (length(todo)) {
   install.packages(todo, lib = lib, repos = repo, type = "source", quiet = TRUE)
 }
 
-# See REPRODUCIBILITY.md, R (stage 2, `make figures`), for why pass 3 is needed.
+# See REPRODUCIBILITY.md for why pass 3 is needed.
 todo <- short()
 if (length(todo)) {
   cat("  pinned below current CRAN for:", paste(todo, collapse = ", "), "-- fetching from the Archive\n")

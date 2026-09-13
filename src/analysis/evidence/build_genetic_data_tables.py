@@ -7,9 +7,6 @@ Outputs: figure_data/gwas_by_drug_status.csv (gene, group, gwas_score; gwas_scor
 figure_data/mis_z_by_drug_status.csv (gene, group, mis_z_score; non-NA),
 figure_data/genetic_data_group_n.csv (panel, group, n),
 figure_data/gwas_zero_inflation.csv (group, pct_gt0)
-
-See REPRODUCIBILITY.md, Drug status table, for the drug-status
-partition rule and the per-panel NA handling.
 """
 import os
 import pandas as pd

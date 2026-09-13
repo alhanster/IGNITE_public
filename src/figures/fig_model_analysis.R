@@ -2,8 +2,6 @@
 # fig_model_analysis.R
 #
 # Six-panel composite figure (ggplot2/patchwork) for the model-analysis section.
-# See REPRODUCIBILITY.md, Figure and table numbering, for panel-letter to
-# source-file correspondence and for the statistics displayed in each panel.
 
 for (loc in c("en_US.UTF-8", "C.UTF-8", "UTF-8")) {
   if (suppressWarnings(Sys.setlocale("LC_ALL", loc)) != "") break

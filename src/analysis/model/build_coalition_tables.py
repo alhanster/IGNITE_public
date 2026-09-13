@@ -8,8 +8,6 @@ Runs after attribution_decomposition.py, reshape_attribution_to_panels.py and co
   figure_data/coalition_significance.csv  3 rows, paired significance tests
   figure_data/coalition_attribution.csv   3 rows, grouped-Shapley shares
   figure_data/coalition_strata.csv        6 rows, per-perturbational-block weak/strong lift
-
-See REPRODUCIBILITY.md, Cross-validation and seeds, for the chance-row standard deviation, the strata block column, and the significance correction.
 """
 import os
 
@@ -19,7 +17,6 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 assert os.path.exists(os.path.join(ROOT, "Makefile")), f"not a repo root: {ROOT}"
 
 FIGDATA = os.path.join(ROOT, "figure_data")
-# See PROVENANCE.md, Evidence coalitions and attribution — no figure; Supplementary Table 6, for how this file is sourced.
 COALITIONS = os.path.join(ROOT, "outputs", "model", "functional_genomics_contribution",
                           "attribution_coalition_auc.csv")
 

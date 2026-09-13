@@ -2,7 +2,7 @@
 
 Reads outputs/knn/knn_nearest_target_<COND>.csv from build_knn_nearest_target.py and writes figure_data/knn_nearest_target_<COND>.csv (8 columns, one sheet per condition).
 
-See REPRODUCIBILITY.md, knn-signatures, for skip behavior and label semantics.
+See REPRODUCIBILITY.md for the skip behavior.
 """
 import os
 import sys

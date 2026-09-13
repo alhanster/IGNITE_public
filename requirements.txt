@@ -1,7 +1,7 @@
 # Requires Python >=3.12: xgboost 3.3.0 has no wheel below 3.12, so 3.11 misreports the pin as unsatisfiable.
 # python_requires: >=3.12
 
-# See REPRODUCIBILITY.md, Python (stage 1, `make tables`).
+# See REPRODUCIBILITY.md.
 numpy==2.4.6           # verified; float ops throughout the PU-bagging path
 pandas==3.0.5          # verified; every table read/write
 scipy==1.18.0          # verified; Fisher exact (IEI), Wilcoxon/permutation (attribution)
@@ -12,7 +12,7 @@ pyarrow==25.0.0        # verified; parquet engine for pu_model_matrix.parquet (u
 matplotlib==3.11.0     # diagnostic plots only, from pu_target_model.py and
                        # Unhashed (stage-2 rendering is R, output gitignored) but pinned: matplotlib stamps its version into the PNG tEXt chunk.
 
-# See REPRODUCIBILITY.md, Opt-in targets.
+# See REPRODUCIBILITY.md.
 h5py                   # HTTP-range reads of the perturb-seq h5ad
 requests               # fetching source effect matrices / Open Targets refresh
 openpyxl               # xlsx engine for the opt-in GPS input rebuild

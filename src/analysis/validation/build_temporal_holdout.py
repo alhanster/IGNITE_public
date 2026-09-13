@@ -5,9 +5,6 @@ Positives (train): approved for an immune indication by T0 (positives_dated.csv)
 Emergent (test): model-target genes whose first interventional trial, any condition,
 falls after T0 and that are not in clinic by T0.
 Known-non-approved: in clinic by T0 via trial date or approval; held out.
-
-See REPRODUCIBILITY.md, Temporal holdout (T0) labels, for the choice of T0 and the
-emergent-gene labelling rule.
 """
 import os, sys, json
 import numpy as np
@@ -45,8 +42,6 @@ def load_dates():
     first_trial: per-gene first interventional-trial year across all drugs and conditions.
     approval_year: per-gene immune approval year.
     targets: model-target genes.
-
-    See REPRODUCIBILITY.md, Temporal holdout (T0) labels, for the labelling rule.
     """
     ev = pd.read_csv(OT_EVIDENCE)
     dd = json.load(open(DATES))
@@ -73,8 +68,7 @@ def load_dates():
 def build_split(T0, ft, appr, targets):
     """Partition the labelled target genes at freeze year T0.
 
-    A single first-trial date decides both branches of the split. See REPRODUCIBILITY.md,
-    Temporal holdout (T0) labels, for the rule.
+    A single first-trial date decides both branches of the split.
     """
     pos = {g for g in targets if pd.notna(appr.get(g)) and appr[g] <= T0}
     emergent, known, dropped = set(), set(), set()
@@ -226,7 +220,7 @@ def main():
     print(f"T0={T0_HEADLINE}: P={len(pos)} emergent={len(emg)} "
           f"known_heldout={len(known)} dropped={len(dropped)}")
 
-    # See REPRODUCIBILITY.md, Temporal holdout (T0) labels.
+    # See REPRODUCIBILITY.md.
     full, meta_f = rt.run_T0(pos, emg, T0_HEADLINE, holdout_genes=known | dropped, tag="full")
     gen, meta_g = rt.run_T0(pos, emg, T0_HEADLINE, feature_subset=rt.GENETICS_FEATS,
                             holdout_genes=known | dropped, tag="genetics")
@@ -260,7 +254,7 @@ def main():
     print(f"DeLong full-vs-genetics: dAUC={d0.delta:+.4f} {d0.stat} "
           f"p_two={d0.p_two_sided} p_one={d0.p_one_sided}")
 
-    # See REPRODUCIBILITY.md, Temporal holdout permutation resolution.
+    # See REPRODUCIBILITY.md.
     rows = []
     for T0 in T0_SWEEP:
         p, e, k, d = build_split(T0, ft, appr, targets)

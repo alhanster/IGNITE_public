@@ -11,9 +11,6 @@ Input:  data/full_gene_list.with_perturbseq.tsv
 Output: figure_data/vignette_panelB_axes.csv (radar panel, wrapped labels)
         figure_data/vignette_axes_supp.csv (Supplementary Table 14 rows)
 Usage:  python src/analysis/vignette/build_vignette_panelB.py
-
-See REPRODUCIBILITY.md, Vignette metadata, for the dropna
-rationale and the two-file output rationale.
 """
 import os
 import pandas as pd

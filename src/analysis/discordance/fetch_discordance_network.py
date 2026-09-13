@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """STRING coherence, GO over-representation and dark-proteome tests for the discordance figure's core sets. Opt-in, run via make discordance-network.
 
-See REPRODUCIBILITY.md, discordance-network, for archive provenance, rerun conditions and the null-model rationale.
+See DATA_AVAILABILITY.md for archive provenance, and the Makefile's discordance-network target for rerun conditions.
 """
 import argparse
 import gzip
@@ -40,13 +40,13 @@ UNIPROT_URL = ("https://rest.uniprot.org/uniprotkb/stream"
 QUICKGO = "https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/%s"
 
 EDGE_CACHE = os.path.join(RAW, "string_edges_ge%d.csv" % MIN_SCORE)
-# Sidecar recording the gene universe the edge cache was derived over. See REPRODUCIBILITY.md, What a green gate does not cover.
+# Sidecar recording the gene universe the edge cache was derived over. See REPRODUCIBILITY.md.
 EDGE_META = os.path.join(RAW, "string_edges_ge%d.meta.json" % MIN_SCORE)
 GAF_CACHE = os.path.join(RAW, "goa_human.gaf.gz")
 UNIPROT_CACHE = os.path.join(RAW, "uniprot_human_reviewed.tsv.gz")
 LABEL_CACHE = os.path.join(ROOT, "data", "reference", "go_term_labels.json")
 
-# GOA GAF and UniProt endpoints are unpinned; STRING is pinned to v12.0. See REPRODUCIBILITY.md, discordance-network.
+# GOA GAF and UniProt endpoints are unpinned; STRING is pinned to v12.0. See REPRODUCIBILITY.md.
 
 
 def cached(url, name):
@@ -117,7 +117,7 @@ def matched(genes, n_sets=N_NULL):
     return out
 
 
-# Offline STRING edge table, built once and cached. See PROVENANCE.md, Written by the opt-in `make discordance-network` target (6 files).
+# Offline STRING edge table, built once and cached. See PROVENANCE.md.
 
 def _symbol_to_ensp(universe):
     """Maps preferred_name to ENSP for symbols in `universe`, using aliases only when the preferred name does not resolve."""
@@ -216,7 +216,7 @@ def network(symbols):
 
 
 def validate_against_cache():
-    """Checks whether the offline counter reproduces the committed network cache. See REPRODUCIBILITY.md, What a green gate does not cover."""
+    """Checks whether the offline counter reproduces the committed network cache. See REPRODUCIBILITY.md."""
     nod = pd.read_csv(need("discordance_network_nodes.csv"))
     ref = pd.read_csv(need("discordance_network_edges.csv"))
     net = pd.read_csv(need("discordance_network.csv")).set_index("direction")

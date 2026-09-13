@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """Stage-1 tables for the perturbational functional genomics figure (4 panels).
 
-Builds the intermediate tables consumed by the figure renderer. See REPRODUCIBILITY.md,
-Perturbational functional genomics gene universe, for the partition, denominator, and universe conventions.
+Builds the intermediate tables consumed by the figure renderer.
 
 Inputs  data/perturbseq/pu/pu_labels.csv
         data/full_gene_list.with_perturbseq.tsv

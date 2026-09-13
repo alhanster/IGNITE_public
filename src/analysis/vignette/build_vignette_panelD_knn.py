@@ -13,8 +13,8 @@ outputs/model/full_model_pu_scores.csv for the anchor set (pu_role == "P").
 Outputs: figure_data/vignette_panelD_knn.csv (six neighbors: gene, cosine, mechanism,
 pathway, approved drugs) and vignette_knn_stats.json (knn_p95).
 
-See REPRODUCIBILITY.md, knn-signatures, for the signature-matrix skip
-behavior and verification values.
+See REPRODUCIBILITY.md for the signature-matrix skip
+behavior.
 """
 import os, sys, json
 import numpy as np, pandas as pd
@@ -59,7 +59,7 @@ def _pretty(name):
 def approved_drug_columns():
     """Maps gene to (all approved drugs joined by "; ", the truncated panel label), using furthest_stage_drugs
 
-    (approved only). See REPRODUCIBILITY.md, Vignette metadata.
+    (approved only). See REPRODUCIBILITY.md.
     """
     bg = pd.read_csv(DRUGS_BY_GENE)
     ev = pd.read_csv(DRUG_EVIDENCE)
@@ -93,7 +93,7 @@ def anchor_set():
 
 
 def main():
-    # See REPRODUCIBILITY.md, knn-signatures, for the skip behavior on a fresh clone.
+    # See REPRODUCIBILITY.md for the skip behavior on a fresh clone.
     sig = os.path.join(KNN_DATA, f"signatures_{COND}.npy")
     if not os.path.exists(sig):
         print(f"SKIP {os.path.basename(__file__)}: {os.path.relpath(sig, ROOT)} is absent.\n"
@@ -135,7 +135,7 @@ def main():
 
     is_anchor = np.array([canon(g) in reference for g in rg])
     # STAT4's -inf sentinel stays in the unlabeled pool rather than being special-cased; see
-    #     REPRODUCIBILITY.md, Vignette metadata.
+    #     REPRODUCIBILITY.md.
     unl = sims[~is_anchor]
     pos_g, pos_v = rg[is_anchor], sims[is_anchor]
     order = np.argsort(pos_v)[::-1][:TOPN]

@@ -2,7 +2,7 @@
 
 The committed figure_data/ tables were produced on Apple Silicon macOS. Elsewhere XGBoost and BLAS
 floating point drift, so checks that pin a value to the committed run warn instead of failing.
-See REPRODUCIBILITY.md, Cross-platform reproduction.
+See REPRODUCIBILITY.md.
 """
 import platform
 

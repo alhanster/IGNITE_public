@@ -4,9 +4,6 @@
 Library entry point: run_T0() takes the label sets as arguments, defined by
 build_temporal_holdout.build_split(). Trains a full model (24 features) and a
 5-feature genetics-only comparator over the same 19,502 genes.
-
-See REPRODUCIBILITY.md, Temporal holdout (T0) labels, for the split
-design and the feature-timestamping caveat.
 """
 import os, json
 import numpy as np
@@ -30,11 +27,11 @@ META = ["gene", "pu_role", "furthest_stage", "crossdonor_correlation_mean"]
 # Same genetic block as attribution_decomposition.py, build_discordance.py,
 # build_heldout_trial_auc.py, and make_panelD_recovery.py, but in this script's own
 # column order (gwas_score before IEI); colsample_bytree makes order load-bearing, so
-# it is left as-is rather than aligned. See REPRODUCIBILITY.md, Cross-validation and seeds.
+# it is left as-is rather than aligned. See REPRODUCIBILITY.md.
 GENETICS_FEATS = ["lof.oe_ci.upper", "mis.z_score", "gwas_score", "IEI", "gene_burden_score"]
 # SEED=4 fixes pu_target_model's medoid seed, keeping Fig 6 and gene-level
 # claims aligned with outputs/model/full_model_pu_scores.csv. See
-# REPRODUCIBILITY.md, Cross-validation and seeds.
+# REPRODUCIBILITY.md.
 SEED = 4
 T_BAG = 200
 

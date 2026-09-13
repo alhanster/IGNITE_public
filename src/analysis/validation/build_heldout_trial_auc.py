@@ -5,8 +5,7 @@ Computes ROC curves and class counts for the held-out in-trial and non-target ge
 and writes them for the renderer as Supplementary Table 7; the class counts are
 computed at build time, not hardcoded. Config is imported from the model-analysis
 recovery panel, so the genetics-only comparator is re-scored at pum.SEED and
-pum.T_BAG. See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts, for the
-verification this build performs against panelD_recovery.csv.
+pum.T_BAG.
 """
 import os, sys, json, numpy as np, pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -67,7 +66,6 @@ for name, s in [("full", full_sc[sub]), ("genetics", gen_sc[sub])]:
     rows.append(pd.DataFrame({"model": name, "fpr": fpr[idx], "tpr": tpr[idx]}))
 pd.concat(rows).to_csv(os.path.join(OUTD, "heldout_trial_roc_curves.csv"), index=False)
 
-# See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts, for the verification performed here.
 import make_panelD_recovery as mpd  # noqa: E402
 
 _ev = pd.read_csv(mpd.EVIDENCE)

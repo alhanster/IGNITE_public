@@ -1,7 +1,7 @@
 """Label-permutation null for the evidence AUC ladder (GPS-style, Duffy/Do 2024).
 
 Opt-in: run via `make permutation-null`, which checkpoints every 25 permutations and resumes;
-see REPRODUCIBILITY.md, permutation-null / permutation-null-finalize.
+see REPRODUCIBILITY.md.
 
 Inputs (read-only):
   data/perturbseq/pu/pu_model_matrix.parquet   labels and features
@@ -28,7 +28,7 @@ import _label_permutation as lp
 import attribution_decomposition as ad   # unmodified CV machinery; also runs check_pins()
 from xgboost import XGBClassifier
 
-# Pins each base learner to a single XGBoost thread; see REPRODUCIBILITY.md, permutation-null / permutation-null-finalize.
+# Pins each base learner to a single XGBoost thread; see REPRODUCIBILITY.md.
 _MAX_DEPTH = int(os.environ.get("MODEL_MAX_DEPTH", "2"))
 
 

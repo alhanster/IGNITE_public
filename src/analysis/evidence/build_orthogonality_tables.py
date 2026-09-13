@@ -6,8 +6,6 @@ Reads the table produced by build_ranked_atlas_table.py. Performs a join only, w
 Outputs:
     figure_data/orthogonality_genetic_vs_fg.csv (95 rows: 5 genetic priors x 19 functional-genomic features)
     figure_data/orthogonality_genetic_pairs.csv (10 rows: pairings among the 5 genetic priors)
-
-See REPRODUCIBILITY.md, Other significance tests, for the pairwise-completeness method.
 """
 import os
 import sys

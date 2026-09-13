@@ -2,8 +2,6 @@
 
 Task A ranks every scorable gene and evaluates how well each method separates the 727 held-out in-trial genes from the 18,435 non-target genes, excluding the 340 approved targets used as PU-model training positives. The leakage-controlled arm additionally excludes the 453 genes GPS was trained on, leaving 535 positives untrained on by either method.
 
-See REPRODUCIBILITY.md, Other significance tests, for missing-value policy and provenance notes.
-
 Inputs (read-only):
   data/perturbseq/pu/pu_model_matrix.parquet             gene, pu_role, mis.z_score
   outputs/model/full_model_pu_scores.csv                       pu_score (written by pu_target_model.py)
@@ -39,7 +37,7 @@ METHODS = [("PU full model", "pu_score",        "drop"),
 
 
 def stars(p):
-    """Significance thresholds: * p<.05, ** p<.01, *** p<.001, **** p<1e-4, computed in this stage rather than the renderer. See REPRODUCIBILITY.md, Multiple-testing correction."""
+    """Significance thresholds: * p<.05, ** p<.01, *** p<.001, **** p<1e-4, computed in this stage rather than the renderer. See REPRODUCIBILITY.md."""
     return ("****" if p < 1e-4 else "***" if p < 1e-3 else "**" if p < 1e-2
             else "*" if p < 5e-2 else "ns")
 
@@ -97,12 +95,12 @@ def main():
     out.to_csv(os.path.join(OUTD, "leakage_controlled_comparison.csv"), index=False)
     print(out.to_string(index=False))
 
-    # Copied byte-for-byte via shutil.copyfile, not re-serialized through pandas. See REPRODUCIBILITY.md, gps-inputs.
+    # Copied byte-for-byte via shutil.copyfile, not re-serialized through pandas. See REPRODUCIBILITY.md.
     assert len(labeled) == 453, f"the GPS training list is 453 genes, this one has {len(labeled)}"
     shutil.copyfile(LAB_PATH, os.path.join(OUTD, "gps_drug_labeled_genes.csv"))
     print(f"copied {len(labeled)}-gene GPS training list -> figure_data/gps_drug_labeled_genes.csv")
 
-    # Paired DeLong significance test, both arms. See REPRODUCIBILITY.md, Other significance tests.
+    # Paired DeLong significance test, both arms. See REPRODUCIBILITY.md.
     def paired_delong(sub):
         pair = sub.dropna(subset=["pu_score"]).copy()
         pair["gps_filled"] = pair.gps_max_overall.fillna(0.0)
@@ -118,7 +116,7 @@ def main():
     arms = {"standard_taskA": paired_delong(task),
             "leakage_controlled": paired_delong(ctl)}
 
-    # Holm correction across both arms as one family. See REPRODUCIBILITY.md, Multiple-testing correction.
+    # Holm correction across both arms as one family. See REPRODUCIBILITY.md.
     for a_, p_holm in zip(arms.values(), holm([a_["p"] for a_ in arms.values()])):
         a_["p_holm"] = p_holm
         a_["stars"] = stars(p_holm)
@@ -131,7 +129,7 @@ def main():
         f"the controlled arm is 18,878 genes / 535 positives, got {lc['n_genes']} / {lc['n_pos']}"
     # The pins are exact only on the reference platform (Apple Silicon macOS). Elsewhere XGBoost
     # and BLAS floating point drift in the 4th decimal, so a moved value is reported, not fatal.
-    # See REPRODUCIBILITY.md, Cross-platform reproduction.
+    # See REPRODUCIBILITY.md.
     for k, want in (("auc_pu", 0.6450824144890129), ("auc_gps", 0.5924324183867029),
                     ("z", 3.6223603841632457), ("p", 0.0002919270292188363)):
         _platform.check(abs(lc[k] - want) < 1e-12,

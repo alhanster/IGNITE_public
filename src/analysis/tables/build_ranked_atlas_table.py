@@ -5,7 +5,7 @@ and data/perturbseq/pu/pu_model_matrix.parquet. Writes figure_data/ranked_atlas.
 
 Run: PYTHONPATH=src .venv/bin/python src/analysis/tables/build_ranked_atlas_table.py
 
-See REPRODUCIBILITY.md, Stage-1 step order, for build-order requirements.
+See REPRODUCIBILITY.md for build-order requirements.
 """
 import os
 import sys

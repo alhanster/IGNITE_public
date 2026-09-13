@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Figure 4 panel f: perturb-seq block signal by genetic-prior stratum.
-See REPRODUCIBILITY.md, Cross-validation and seeds, for feature-group and metric details.
+See REPRODUCIBILITY.md for the feature groups.
 """
 import os
 import numpy as np
@@ -27,7 +27,7 @@ os.makedirs(OUTD, exist_ok=True)
 MATRIX = os.path.join(PU_DIR, "pu_model_matrix.parquet")
 OUT    = os.path.join(OUTD, "panelE_block_signal.csv")
 
-# Panel f aggregation and bag count: see REPRODUCIBILITY.md, Cross-validation and seeds.
+# Panel f aggregation and bag count: see REPRODUCIBILITY.md.
 SEED, T_BAG = 4, 60
 SEEDS = [0, 1, 2, 3, 4]
 PRIOR = ["lof.oe_ci.upper", "mis.z_score", "IEI", "gwas_score", "gene_burden_score"]

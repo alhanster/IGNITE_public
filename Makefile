@@ -17,7 +17,7 @@
 # Python and R may need separate environments. Override with:
 #   make tables  PY=/path/to/py-env/bin/python3
 #   make figures RSCRIPT=/path/to/r-env/bin/Rscript
-# PY must be the pinned environment (requirements.txt: xgboost==3.3.0); src/analysis/common/_version_guard.py aborts on a mismatch. See REPRODUCIBILITY.md, Environment and version pins.
+# PY must be the pinned environment (requirements.txt: xgboost==3.3.0); src/analysis/common/_version_guard.py aborts on a mismatch. See REPRODUCIBILITY.md.
 PY_AUTO := $(shell tools/detect_python.sh)
 PY      ?= $(if $(PY_AUTO),$(PY_AUTO),python3)
 RSCRIPT ?= Rscript
@@ -39,10 +39,10 @@ PERM_JOBS ?= 11
 PERM_N    ?= 1000
 PERM_SCR  ?= 99
 
-# Matched null draws for the discordance STRING test (opt-in target below); not on the make tables path. See REPRODUCIBILITY.md, discordance-network, for STRING test.
+# Matched null draws for the discordance STRING test (opt-in target below); not on the make tables path. See REPRODUCIBILITY.md.
 DISC_NULL ?= 500
 
-# Relaxes the MISSING class in verify-figures from fatal to reported-only; empty by default, set only by supplementary:. See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.
+# Relaxes the MISSING class in verify-figures from fatal to reported-only; empty by default, set only by supplementary:. See REPRODUCIBILITY.md.
 VERIFY_ALLOW_MISSING ?=
 
 help:
@@ -85,7 +85,7 @@ help:
 	@echo "  Override interpreters:  make tables PY=... RSCRIPT=..."
 	@echo "  Per-step logs: logs/NN_<script>.log   Summary: logs/_summary.tsv"
 
-# Entry point for a fresh clone: provisions .venv/ and .rlib/ (gitignored), so later targets need no PY= or R_LIBS_USER= override. See REPRODUCIBILITY.md, Environment layout and overrides.
+# Entry point for a fresh clone: provisions .venv/ and .rlib/ (gitignored), so later targets need no PY= or R_LIBS_USER= override. See REPRODUCIBILITY.md.
 setup:
 	@tools/setup_env.sh
 
@@ -93,7 +93,7 @@ install:
 	$(PY) -m pip install -r requirements.txt
 
 # Verifies Python and R package versions before a rebuild; mismatched versions silently change results.
-# See REPRODUCIBILITY.md, `make check-versions`.
+# See REPRODUCIBILITY.md.
 check-versions:
 	@echo "  PY=$(PY) -> $$(command -v $(PY) 2>/dev/null || echo 'NOT FOUND') ($$($(PY) -V 2>&1))"
 	@$(PY) src/analysis/common/_version_guard.py && echo "  PY=$(PY) matches the committed pins"
@@ -104,8 +104,7 @@ all: tables
 
 # One command from a fresh clone to the submission tree. Runs stage 1, stage 2, both
 # verification gates and the packaging step, in that order, entirely offline. This is the
-# target the reproduction claim refers to. See REPRODUCIBILITY.md, Reproduction boundary,
-# for what it does and does not re-derive.
+# target the reproduction claim refers to. See REPRODUCIBILITY.md for what it does not re-derive.
 submission:
 	@echo "[1/4] checking the pinned environment"
 	@$(MAKE) --no-print-directory check-versions
@@ -129,7 +128,7 @@ test:
 	@$(PY) -m pytest tools -q
 
 # STAGE 1: analysis scripts. Writes figure_data/; outputs not read by a figure go to outputs/, treated as scratch and removed by make clean.
-# Script order is load-bearing; run without -j. See REPRODUCIBILITY.md, Stage-1 step order.
+# Script order is load-bearing; run without -j. See REPRODUCIBILITY.md.
 tables:
 	rm -rf logs
 	rm -f outputs/_skipped.tsv
@@ -168,7 +167,7 @@ tables:
 	@echo ""
 	@echo "stage 1 complete. Commit figure_data/ so that \`make figures\` needs no refit."
 
-# Stage 2: figures. Reads figure_data/ only; each renderer writes its deliverable directly into final_plots/. Numbered supplementary tables are excluded from final_plots/ and packaged separately; see REPRODUCIBILITY.md, The two-stage build and the figure_data contract.
+# Stage 2: figures. Reads figure_data/ only; each renderer writes its deliverable directly into final_plots/. Numbered supplementary tables are excluded from final_plots/ and packaged separately; see REPRODUCIBILITY.md.
 
 # Tables are packaged from figure_data/ via package_supplementary_tables.py, bypassing final_plots.sha256.
 
@@ -191,7 +190,7 @@ figures:
 	@echo ""
 	@echo "stage 2 complete. Verify: shasum -a 256 -c final_plots.sha256"
 
-# Opt-in permutation null for the AUC ladder, not part of `make tables`. Budget about 8.5 hours at PERM_JOBS=11 (measured 2026-09-06: 7 h 17 m for the 1,000 permutations, plus 1 h 16 m for the 99 scrambled-feature draws that this target also runs). Reads the committed figure_data/panelA_auc_ladder.csv and checkpoints every 25 permutations so an interrupted run resumes. Writes directly into figure_data/; revert a smoke test with `git checkout -- figure_data`. See REPRODUCIBILITY.md, permutation-null / permutation-null-finalize.
+# Opt-in permutation null for the AUC ladder, not part of `make tables`. Budget about 8.5 hours at PERM_JOBS=11 (measured 2026-09-06: 7 h 17 m for the 1,000 permutations, plus 1 h 16 m for the 99 scrambled-feature draws that this target also runs). Reads the committed figure_data/panelA_auc_ladder.csv and checkpoints every 25 permutations so an interrupted run resumes. Writes directly into figure_data/; revert a smoke test with `git checkout -- figure_data`. See REPRODUCIBILITY.md.
 permutation-null:
 	mkdir -p figure_data outputs/permutation
 	$(RUN) py src/analysis/permutation/run_label_permutation.py --n-perm $(PERM_N) --jobs $(PERM_JOBS)
@@ -203,7 +202,7 @@ permutation-null:
 permutation-null-finalize:
 	$(RUN) py src/analysis/permutation/finalize_label_permutation.py
 
-# Opt-in target, not part of `make tables`. Builds S2's STRING coherence, GO over-representation and dark-proteome tables from about 135 MB of external STRING and UniProt-GOA archives, cached in gitignored data/raw/discordance/ (about 10 minutes on first run, about 1 minute after). Rerun when the core gene sets change (pum.SEED, tree depth, or the feature matrix): run make tables, then make discordance-network, then make tables again. `--validate` checks the cached data still matches upstream STRING. See REPRODUCIBILITY.md, discordance-network.
+# Opt-in target, not part of `make tables`. Builds S2's STRING coherence, GO over-representation and dark-proteome tables from about 135 MB of external STRING and UniProt-GOA archives, cached in gitignored data/raw/discordance/ (about 10 minutes on first run, about 1 minute after). Rerun when the core gene sets change (pum.SEED, tree depth, or the feature matrix): run make tables, then make discordance-network, then make tables again. `--validate` checks the cached data still matches upstream STRING. See REPRODUCIBILITY.md.
 discordance-network:
 	mkdir -p figure_data data/raw/discordance
 	$(RUN) py src/analysis/discordance/fetch_discordance_network.py --n-null $(DISC_NULL)
@@ -220,7 +219,7 @@ vignette-panelc:
 
 # gps-inputs: OPT-IN, network. Regenerates gps_per_gene.csv and gps_drug_labeled_genes.csv from the published GPS supplementary table (data/raw/gps/GPS_allgenes.xlsx, gitignored, absent from clean clones); not part of make tables.
 # Run make tables && make verify-tables afterward: gps_max_overall and the 453-gene list must reproduce byte-identically, or the source table or a derivation rule has changed.
-# See REPRODUCIBILITY.md, gps-inputs.
+# See REPRODUCIBILITY.md.
 gps-inputs:
 	$(RUN) py src/analysis/specificity/build_gps_per_gene.py
 	@echo ""
@@ -228,7 +227,7 @@ gps-inputs:
 
 # knn-signatures: OPT-IN, network, about 3-4 minutes. Streams perturb-seq knockdown signature matrices into data/perturbseq/knn/ (not committed; signatures_Stim48hr.npy alone is 294 MB); not part of make tables.
 # Without it, build_vignette_panelD_knn.py skips and leaves vignette_panelD_knn.csv and vignette_knn_stats.json at their committed values, so verify-tables passes trivially for those two files.
-# See REPRODUCIBILITY.md, knn-signatures.
+# See REPRODUCIBILITY.md.
 knn-signatures:
 	$(RUN) py src/analysis/vignette/build_knn_signatures.py
 	@echo ""
@@ -236,11 +235,11 @@ knn-signatures:
 	@echo "  $(RUN) py src/analysis/vignette/build_vignette_panelD_knn.py && make verify-tables"
 
 # verify-tables checks numeric reproduction (hard failure, portable); verify-figures checks pixel reproduction (reported only, machine-specific).
-# See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.
+# See REPRODUCIBILITY.md.
 verify: verify-tables verify-figures
 
 # Reproduction is judged against the committed figure_data/ via git status, so a clean tree after rebuild is the check; it requires a git checkout and excludes .md files from the gate.
-# See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.
+# See REPRODUCIBILITY.md.
 verify-tables:
 	@git rev-parse --git-dir >/dev/null 2>&1 || { \
 	  echo "verify-tables needs a git checkout (figure_data/ is verified against the commit)" >&2; \
@@ -253,7 +252,7 @@ verify-tables:
 	  echo "  figure_data/: NOT byte-identical to the commit, as expected on $$(uname -s)/$$(uname -m)."; \
 	  echo "  The committed tables were produced on Apple Silicon macOS, the only platform where they"; \
 	  echo "  reproduce exactly; elsewhere model-derived values drift in about the 4th decimal. Not a"; \
-	  echo "  failure here. See REPRODUCIBILITY.md, Cross-platform reproduction, for the measured drift."; \
+	  echo "  failure here."; \
 	  git diff --stat -- figure_data ':(exclude)figure_data/*.md'; \
 	else \
 	  echo ""; \
@@ -263,7 +262,7 @@ verify-tables:
 	  exit 1; \
 	fi
 
-# Rendering check: sorts files into five severity classes before reporting failures. See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.
+# Rendering check: sorts files into five severity classes before reporting failures. See REPRODUCIBILITY.md.
 verify-figures:
 	@if [ ! -f final_plots.sha256 ]; then \
 	  echo "no final_plots.sha256 to verify against" >&2; exit 1; fi
@@ -386,7 +385,7 @@ verify-figures:
 	   || { [ $$missing -gt 0 ] && [ -z "$(VERIFY_ALLOW_MISSING)" ]; }; then exit 1; fi; \
 	[ $$missing -eq 0 ] && [ $$nopdf -eq 0 ] && [ $$soft -eq 0 ] && [ $$docs -eq 0 ] && [ $$xdoc -eq 0 ] && echo "  final_plots/: all `grep -cE '^[0-9a-f]{64}  ' final_plots.sha256` baseline files match, and no unlisted files" || true
 
-# Renders and packages only the supplementary display items, into supplementary/. See REPRODUCIBILITY.md, PDF outputs and the supplementary target.
+# Renders and packages only the supplementary display items, into supplementary/. See REPRODUCIBILITY.md.
 supplementary:
 	mkdir -p final_plots/supplementary
 	@for f in $(SUPP_RENDERERS_R);  do $(RUN) R  src/figures/$$f || exit 1; done
@@ -398,7 +397,7 @@ supplementary:
 	@echo ""
 	@echo "supplementary/ assembled. Main figures were not touched."
 
-# Assembles only the display items, numbered as the manuscript numbers them. See REPRODUCIBILITY.md, What `make submission` re-derives, and what it does not.
+# Assembles only the display items, numbered as the manuscript numbers them. See REPRODUCIBILITY.md.
 final-outputs: verify
 	rm -rf final_outputs
 	mkdir -p final_outputs/main_figures/pdf final_outputs/supplementary_figures
@@ -420,7 +419,7 @@ final-outputs: verify
 # PDFs render only on macOS; drop the pdf/ directory rather than ship it empty.
 	@rmdir final_outputs/main_figures/pdf 2>/dev/null || true
 	@$(PY) tools/package_supplementary_figures.py --out-dir final_outputs/supplementary_figures
-# supplementary_data/ is not assembled; see REPRODUCIBILITY.md, Numbered supplementary tables.
+# supplementary_data/ is not assembled; see REPRODUCIBILITY.md.
 	@$(PY) tools/package_supplementary_tables.py
 	@$(PY) tools/write_submission_readme.py
 # Finder can drop a .DS_Store into the tree between assembly and packing; it is in no manifest.
@@ -446,7 +445,7 @@ clean:
 # final_plots/supplementary/ holds only S2 and S3.
 	rm -f final_plots/supplementary/leakage_controlled_comparison.png \
 	      final_plots/supplementary/figure_discordance_genetics_vs_full.png
-# data/raw/discordance/ and final_outputs/ handling: see REPRODUCIBILITY.md, Build scratch and cleanup scope.
+# data/raw/discordance/ and final_outputs/ handling: see REPRODUCIBILITY.md.
 	rm -rf final_outputs
 # clean wipes supplementary/: make supplementary rebuilds it as a pure copy, so stale files would look current.
 	rm -rf supplementary

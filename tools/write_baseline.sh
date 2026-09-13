@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Regenerates final_plots.sha256 from the final_plots/ tree.
 # Usage: tools/write_baseline.sh <py-interpreter> <rscript-interpreter>
-# See REPRODUCIBILITY.md, Baseline generation, for prerequisites and hashing method.
+# See REPRODUCIBILITY.md for prerequisites.
 
 set -euo pipefail
 
@@ -16,13 +16,13 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
 # Resolves R packages from .rlib/, matching the environment that built the figures.
-# See REPRODUCIBILITY.md, Environment layout and overrides.
+# See REPRODUCIBILITY.md.
 if [ -d "$REPO_ROOT/.rlib" ]; then
   export R_LIBS_USER="$REPO_ROOT/.rlib"
 fi
 
 # Confirms the working tree matches HEAD before the baseline is written.
-# See REPRODUCIBILITY.md, What a green gate does not cover.
+# See REPRODUCIBILITY.md.
 DIRTY_PATHS="$(git status --porcelain -- \
                  src Makefile requirements.txt R-requirements.txt tools data figure_data \
                2>/dev/null || true)"
@@ -38,7 +38,7 @@ GGP="$("$RS_BIN" -e 'cat(as.character(packageVersion("ggplot2")))')"
 STAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 # Delegates toolchain-version checks to the existing checkers, which exit non-zero on mismatch.
-# See REPRODUCIBILITY.md, What a green gate does not cover.
+# See REPRODUCIBILITY.md.
 PINS_OK=yes
 "$PY_BIN" src/analysis/common/_version_guard.py >/dev/null 2>&1 || PINS_OK=no
 "$RS_BIN" tools/check_r_versions.R       >/dev/null 2>&1 || PINS_OK=no

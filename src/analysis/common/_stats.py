@@ -1,4 +1,4 @@
-"""See REPRODUCIBILITY.md, Multiple-testing correction."""
+"""See REPRODUCIBILITY.md."""
 from scipy.stats import false_discovery_control
 
 

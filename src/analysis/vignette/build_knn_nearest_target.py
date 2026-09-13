@@ -7,7 +7,7 @@ transcriptome-wide signature to the nearest approved immune-drug target anchor:
 
 Run for Rest, Stim8hr, and Stim48hr conditions; reported as Supplementary Table 15.
 
-See REPRODUCIBILITY.md, knn-signatures.
+See REPRODUCIBILITY.md.
 """
 import os
 import sys

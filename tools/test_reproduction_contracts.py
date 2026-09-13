@@ -149,28 +149,15 @@ def test_no_shell_script_is_syntactically_broken():
 
 # --- documentation cross-references -----------------------------------------------
 
-# The source tree carries its rationale in REPRODUCIBILITY.md and figure_data/PROVENANCE.md
-# rather than in long module docstrings, so a comment that says "See REPRODUCIBILITY.md, X"
-# is only useful if X names a section a reader can actually find. These two tests keep the
-# pointers and the headings from drifting apart.
+# The source tree points at REPRODUCIBILITY.md and figure_data/PROVENANCE.md by document
+# name only, never by section, so the documents can be restructured without touching source
+# comments. These two tests keep that convention: a pointer that regrows a ", Section" tail
+# would couple the two again and drift the moment a heading is renamed.
 
 XREF_DOCS = {"REPRODUCIBILITY.md": "REPRODUCIBILITY.md",
              "PROVENANCE.md": os.path.join("figure_data", "PROVENANCE.md")}
 
-# Trailing text is allowed after the heading (", for the rationale."), so the reference is
-# matched as a prefix rather than by delimiting on the first period -- several headings name
-# a .png file and would otherwise be cut in half.
 XREF_RE = re.compile(r"(REPRODUCIBILITY|PROVENANCE)\.md,\s*(.{3,160})", re.S)
-
-
-def _xref_norm(s):
-    return re.sub(r"\s+", " ", re.sub(r"[`*]", "", s)).strip().lower()
-
-
-def _xref_headings(rel):
-    heads = {_xref_norm(h.strip("# ")) for h in re.findall(r"^#{1,6} .*$", _read(rel), re.M)}
-    # longest first, so "supplementary tables" wins over the bare "supplementary" heading
-    return sorted({h for h in heads if h}, key=len, reverse=True)
 
 
 def _xref_sources():
@@ -186,29 +173,24 @@ def _xref_sources():
     return [f for f in sorted(set(out)) if os.path.exists(os.path.join(ROOT, f))]
 
 
-def test_every_doc_cross_reference_names_a_real_heading():
-    headings = {doc: _xref_headings(rel) for doc, rel in XREF_DOCS.items()}
-    dangling = []
+def test_referenced_docs_exist():
+    """Every document the tree points at must be present."""
+    missing = [rel for rel in sorted(XREF_DOCS.values())
+               if not os.path.exists(os.path.join(ROOT, rel))]
+    assert missing == [], f"source comments point at absent documents: {missing}"
+
+
+def test_doc_pointers_do_not_name_sections():
+    """A pointer names the document only; a ", Section" tail recouples docs to source."""
+    sectioned = []
     for rel in _xref_sources():
         text = _read(rel)
         for m in XREF_RE.finditer(text):
-            doc = m.group(1) + ".md"
-            # stop at a blank line so a reference at the end of a paragraph does not
-            # swallow the next one
-            tail = _xref_norm(re.split(r"\n\s*\n", m.group(2))[0])
-            if not any(tail.startswith(h) and (len(tail) == len(h) or tail[len(h)] in ",. ;:")
-                       for h in headings[doc]):
-                line = text[:m.start()].count("\n") + 1
-                dangling.append(f"{rel}:{line} -> {tail[:60]!r}")
-    assert dangling == [], (
-        "cross-reference does not name a heading in the target document:\n  "
-        + "\n  ".join(dangling))
-
-
-def test_doc_cross_references_are_actually_present():
-    """Guard against the checker silently passing because it matched nothing."""
-    found = sum(len(XREF_RE.findall(_read(rel))) for rel in _xref_sources())
-    assert found > 100, f"expected the tree to carry its doc cross-references, found {found}"
+            line = text[:m.start()].count("\n") + 1
+            sectioned.append(f"{rel}:{line} -> {m.group(2)[:60]!r}")
+    assert sectioned == [], (
+        "doc pointer names a section; reference the document only:\n  "
+        + "\n  ".join(sectioned))
 
 
 # --- submission package integrity ---------------------------------------------------

@@ -115,7 +115,7 @@ def pdf_source(row):
 def copy_pdfs(rows, names, outd, out_dir_label):
     """Packages the vector twins into <out-dir>/pdf/, named to match their PNGs.
 
-    See REPRODUCIBILITY.md, PDF outputs and the supplementary target.
+    See REPRODUCIBILITY.md.
     """
     present = [r for r in rows if os.path.isfile(pdf_source(r))]
     if not present:

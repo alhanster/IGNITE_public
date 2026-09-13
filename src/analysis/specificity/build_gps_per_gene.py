@@ -4,9 +4,6 @@
 Writes:
   data/specificity/gps_per_gene.csv           gene, gene_id, gps_max_overall, gps_max_immune
   data/specificity/gps_drug_labeled_genes.csv the 453 genes GPS trained on
-
-See PROVENANCE.md, The GPS inputs are now derived, not frozen, for the derivation rules and the comparison
-against the previously frozen files.
 """
 import hashlib
 import os

@@ -13,8 +13,6 @@ Inputs:
 Output:
   figure_data/drug_status_annotations.csv      1,089 rows, one per gene with any annotation
 
-See REPRODUCIBILITY.md, Drug status table, for why list columns come from the evidence file rather than the rollup and why latest_trial_year is omitted.
-
 Run: PYTHONPATH=src .venv/bin/python src/analysis/tables/build_drug_status_table.py
 """
 import json
@@ -95,7 +93,7 @@ def main():
                "first_trial_year", "approval_year", "multi_target_expanded",
                "in_feature_matrix"]].sort_values("gene").reset_index(drop=True)
 
-    # Cross-checks against the rollup and model matrix: see REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+    # Cross-checks against the rollup and model matrix: see REPRODUCIBILITY.md.
     ref = pd.read_csv(BY_GENE).rename(columns={"gene_target": "gene"})
     assert set(ref["gene"]) == set(out["gene"]), "gene set disagrees with the by-gene rollup"
     chk = out.merge(ref[["gene", "n_drugs", "furthest_stage"]], on="gene", suffixes=("", "_ref"))

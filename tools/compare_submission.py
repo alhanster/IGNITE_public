@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Compares two assembled final_outputs/ trees against a reference package, ignoring fields
-that cannot match. See REPRODUCIBILITY.md, What a green gate does not cover.
+that cannot match. See REPRODUCIBILITY.md.
 
 python3 tools/compare_submission.py <reference-package-dir> [final_outputs]
 """

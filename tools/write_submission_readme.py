@@ -98,7 +98,7 @@ if not (platform.system() == "Darwin" and platform.machine() == "arm64"):
     lines.append(f"> **This package was built on {platform.system()} {platform.machine()}, not macOS "
                  "(Apple Silicon).** Minor")
     lines.append("> numerical differences from the reported values are expected, as described above.")
-    lines.append("> See REPRODUCIBILITY.md, Cross-platform reproduction.")
+    lines.append("> See REPRODUCIBILITY.md.")
     lines.append("")
 lines.append("## Main figures")
 lines.append("")

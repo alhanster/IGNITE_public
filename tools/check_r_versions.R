@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# See REPRODUCIBILITY.md, R (stage 2, `make figures`).
+# See REPRODUCIBILITY.md.
 
 args <- commandArgs(trailingOnly = FALSE)
 script_path <- sub("^--file=", "", args[grep("^--file=", args)])

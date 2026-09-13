@@ -1,5 +1,5 @@
 # R packages for the stage-2 renderers in src/figures/*.R.
-# See REPRODUCIBILITY.md, R (stage 2, `make figures`), for exact package and system-library pins.
+# See REPRODUCIBILITY.md for exact package and system-library pins.
 # R 4.4.1
 
 ggplot2==4.0.3     # all figures
@@ -13,7 +13,7 @@ ggrepel==0.9.6
 # systemfonts/textshaping set font and glyph layout for ragg; check_r_versions.R verifies Arial Unicode MS via systemfonts::match_fonts().
 systemfonts==1.2.1 # font matching for ragg; resolves 'Arial Unicode MS'
 textshaping==1.0.0 # glyph shaping for ragg
-# See REPRODUCIBILITY.md, R (stage 2, `make figures`).
+# See REPRODUCIBILITY.md.
 gridtext==0.1.6    # ggtext's markdown/HTML layout + rendering engine
 ggtext==0.2.0      # element_markdown()/geom_richtext() for fig_stat4_vignette.R panel c
 # ggtext/gridtext also pull commonmark, jpeg, litedown, markdown, xfun, left unpinned since they parse text or decode the jpeg fallback rather than render glyphs (verified versions: commonmark 2.0.0, jpeg 0.1.11, litedown 0.11, markdown 2.0, xfun 0.60).

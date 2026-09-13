@@ -5,8 +5,6 @@ The feature groups form an exact partition of the model features, defined in the
 
 Computes grouped Shapley values over AUC-above-chance across all 8 coalitions of the three groups (5-fold PU-bagging cross-validation, averaged over 5 seeds), paired Wilcoxon signed-rank tests on matched per-fold AUCs, and top-k recovery of held-out trial targets.
 
-See REPRODUCIBILITY.md, Nadeau-Bengio corrected significance (Figure 4 panels a and c), for the corrected significance values used in published figures.
-
 Input: data/perturbseq/pu/pu_model_matrix.parquet
 Outputs: outputs/model/functional_genomics_contribution/attribution_results.json, attribution_coalition_auc.csv, outputs/model/figure_attribution.png
 """
@@ -54,7 +52,7 @@ PERTURBATIONAL = ["expected_n_regulators_residuals",
 OBSERV = ["zscore_Th1", "zscore_Th2", "zscore_Th17", "zscore_Treg"]
 GROUPS = {"genetic": GENETIC, "perturbational": PERTURBATIONAL, "observational": OBSERV}
 G = list(GROUPS.keys())
-# See REPRODUCIBILITY.md, Cross-validation and seeds.
+# See REPRODUCIBILITY.md.
 SEEDS = [0, 1, 2, 3, 4]
 N_SEED = len(SEEDS)
 T_BAG = 30

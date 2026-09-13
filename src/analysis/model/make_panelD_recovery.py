@@ -4,8 +4,7 @@ genetics-only versus the full model, ranked to depth 500.
 
 Membership uses the immune-only rule (furthest immune-indication stage >= Phase 1),
 matching build_immune_stages_data.py, so this figure and the trial-validation figure
-agree by construction. See REPRODUCIBILITY.md, Other significance tests, for the
-ranking provenance of each bar.
+agree by construction.
 
 Outputs:
   figure_data/panelD_recovery.csv (k, depth, genetics, genetics_perturbseq, gain)
@@ -80,7 +79,7 @@ def main():
     m_na = m_na.sort_values("sc", ascending=False).reset_index(drop=True)
     gen = recovery_counts(m_na.gene, imm_num)
 
-    # Persists the genetics-only ranking; see REPRODUCIBILITY.md, Other significance tests.
+    # Persists the genetics-only ranking; see REPRODUCIBILITY.md.
     cols = ["gene", "pu_role", "furthest_stage"]
     ranked = m_na[cols].assign(genetics_score=m_na["sc"],
                                rank=np.arange(1, len(m_na) + 1))

@@ -141,7 +141,7 @@ def main():
     for panel, posset in [("immune_exclusive", imm_excl),
                           ("cardiac_exclusive", car_excl)]:
         _, y = vec(posset, "pu_score")
-        # See REPRODUCIBILITY.md, Multiple-testing correction.
+        # See REPRODUCIBILITY.md.
         raw = []
         for a, b in pairs:
             sa, _ = vec(posset, specs[a])

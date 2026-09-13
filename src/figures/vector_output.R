@@ -8,7 +8,7 @@
 
 # The committed figure_data/ tables were produced on Apple Silicon macOS, the only platform where they
 # reproduce exactly. Checks that tie a table to that run fail there and warn elsewhere.
-# See REPRODUCIBILITY.md, Cross-platform reproduction.
+# See REPRODUCIBILITY.md.
 on_reference_platform <- function() {
   si <- Sys.info()
   identical(si[["sysname"]], "Darwin") && identical(si[["machine"]], "arm64")

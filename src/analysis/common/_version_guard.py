@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fails at import time when installed package versions differ from the pins used to build committed artifacts. Called from src/analysis/model/pu_target_model.py via check_pins(). See REPRODUCIBILITY.md, Python (stage 1, `make tables`), for the numerical rationale and the IGNITE_ALLOW_VERSION_MISMATCH escape hatch."""
+"""Fails at import time when installed package versions differ from the pins used to build committed artifacts. Called from src/analysis/model/pu_target_model.py via check_pins(). See REPRODUCIBILITY.md for the numerical rationale and the IGNITE_ALLOW_VERSION_MISMATCH escape hatch."""
 import os
 import re
 import sys
@@ -179,7 +179,7 @@ def check_pins(critical=CRITICAL, requirements=REQUIREMENTS):
 
 
 def audit_coverage(root=ROOT):
-    """See REPRODUCIBILITY.md, `make check-versions`."""
+    """See REPRODUCIBILITY.md."""
     import glob
     unguarded = []
     pats = [os.path.join(root, "src", "**", "*.py"),

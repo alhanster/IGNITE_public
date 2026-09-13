@@ -3,7 +3,7 @@
 
 Derives the backing table for Figure 4 panel d directly from the PU model output.
 
-Group definition: pu_role == 'P' -> approved; furthest_stage starting with 'Phase' -> in-trial; else -> non-target. See REPRODUCIBILITY.md, Drug status table, for the redundant-key check.
+Group definition: pu_role == 'P' -> approved; furthest_stage starting with 'Phase' -> in-trial; else -> non-target.
 
 Input : outputs/model/full_model_pu_scores.csv (produced by src/analysis/model/pu_target_model.py)
 Output: figure_data/score_by_group.csv, figure_data/score_by_group_stats.json
@@ -47,7 +47,6 @@ def main():
 
     gp["grp"] = gp.apply(assign_group, axis=1)
     out = gp[["gene", "grp", "rank_pctile", "pu_score", "rank_pctile_cv", "pu_score_cv"]].copy()
-    # See REPRODUCIBILITY.md, What a green gate does not cover, for the OOB filtering versus test-frame note.
     keep = out["rank_pctile_cv"].notna()
     # The tests and the JSON's group counts run on the unfiltered frame, so the two scores must
     # cover the same genes or panel d's axis labels overstate what is plotted.
@@ -60,7 +59,7 @@ def main():
     H, p_kw = stats.kruskal(*groups)
     F, p_an = stats.f_oneway(*groups)
 
-    # All three groups are scored out of sample on the cross-fitted score; see REPRODUCIBILITY.md, Other significance tests.
+    # All three groups are scored out of sample on the cross-fitted score; see REPRODUCIBILITY.md.
     U_ho, p_ho = stats.mannwhitneyu(
         out.loc[out.grp == "in-trial", "pu_score_cv"],
         out.loc[out.grp == "non-target", "pu_score_cv"],

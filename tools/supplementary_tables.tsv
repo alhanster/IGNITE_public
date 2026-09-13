@@ -5,12 +5,12 @@
 #
 #     Supp Table <number> - <title>.<ext>
 #
-# and generates the folder README from the CSV headers. Renumbering means editing a column here,
+# and writes a one-line folder README pointing to Supplementary Information.pdf. Renumbering means editing a column here,
 # not renaming a file: the figure_data/ filename is the stage-1 contract read by producers,
 # PROVENANCE.md and verify-tables. final_plots/ is hashed and is not part of this packaging path.
 #
-# Columns are TAB-separated. `description` is prose for the generated README; the column
-# dictionary beside it is read from the actual file header, so a mismatch is visible on sight.
+# Columns are TAB-separated. `description` is required but not written to the package; the
+# table descriptions live in Supplementary Information.pdf.
 #
 # `source` is one filename, or a multi-sheet spec `Sheet name=file.csv;Other=other.csv` packaged
 # as one .xlsx. The sheet CSVs live separately in figure_data/ and combine at package time: an

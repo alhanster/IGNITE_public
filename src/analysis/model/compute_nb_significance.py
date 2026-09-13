@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""See REPRODUCIBILITY.md, Nadeau-Bengio corrected significance (Figure 4 panels a and c)."""
+"""See REPRODUCIBILITY.md."""
 import os
 import sys
 import numpy as np

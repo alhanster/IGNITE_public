@@ -1,4 +1,4 @@
-"""See REPRODUCIBILITY.md, Other significance tests."""
+"""See REPRODUCIBILITY.md."""
 import os
 import sys
 
@@ -24,7 +24,6 @@ _FIGDATA      = _REPO / "figure_data"
 
 
 def stars(p):
-    """See REPRODUCIBILITY.md, Multiple-testing correction, for forest-plot stars."""
     if pd.isna(p):
         return ""
     return ("****" if p < 1e-4 else "***" if p < .001 else "**" if p < .01
@@ -37,7 +36,7 @@ def load_lists():
         approved = set(l.strip() for l in f if l.strip())
     dg = pd.read_csv(ALL_DRUGS_CSV)
     dg['gene_target'] = dg['gene_target'].dropna().astype(str).str.strip()
-    # See REPRODUCIBILITY.md, Other significance tests.
+    # See REPRODUCIBILITY.md.
     trial_staged = set(
         g for g in dg.loc[dg['furthest_stage'].isin(
             ['Phase 1', 'Phase 2', 'Phase 3']), 'gene_target'] if g)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds figure_data/feature_dictionary.csv: for each of the 24 modelled features, records evidence block, condition, definition, coverage, imputation rule, source, observed association with the ranking, and bagging importance.
 
-Runs as part of the `make tables` step, after pu_target_model.py, which writes the importance table joined here. See REPRODUCIBILITY.md, Feature dictionary provenance, for why importances are not recomputed in this script.
+Runs as part of the `make tables` step, after pu_target_model.py, which writes the importance table joined here.
 
 Block membership for each feature is imported from attribution_decomposition.py, which partitions the feature matrix at import time.
 
@@ -56,7 +56,7 @@ SOURCE_OF_FEATURE = {
     "gene_burden_score": "Open Targets Platform 26.06, gene_burden datasource",
 }
 
-# See REPRODUCIBILITY.md, Feature dictionary provenance.
+# See REPRODUCIBILITY.md.
 DEFINITION = {
     "IEI": "Binary membership of the inborn-errors-of-immunity gene list.",
     "gwas_score": "Per-gene GWAS association score for immune indications. Distinct from the "

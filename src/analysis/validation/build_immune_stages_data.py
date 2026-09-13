@@ -85,7 +85,7 @@ def rank_nonapproved(scores, score_col):
 
 
 def bootstrap_arm(na, n_top):
-    """Observed top-n rates and bootstrapped control for one model at one depth. See REPRODUCIBILITY.md, Other significance tests, for the control-sampling rationale."""
+    """Observed top-n rates and bootstrapped control for one model at one depth."""
     top_ = na.head(n_top)
     t_a, t_d = int(phI(top_).sum()), int(ph3(top_).sum())
     pool_ = na[na.rank_na > CTRL_RANK_MIN]
@@ -162,7 +162,7 @@ for rec in sweep:
             f"panel b and panel c disagree on {rec['model']} {f_} at depth {N_TOP}"
 
 # ---------------------------------------------------------------- multiple-testing correction
-# BH applied across the eight enrichment tests Figure 5 displays, as one family. See REPRODUCIBILITY.md, Multiple-testing correction, for the rationale.
+# BH applied across the eight enrichment tests Figure 5 displays, as one family.
 sites = [(stats_b_full, "bootstrap_p_phI"), (stats_b_full, "bootstrap_p_ph3"),
          (stats_b_gen, "gen_bootstrap_p_phI"), (stats_b_gen, "gen_bootstrap_p_ph3")]
 sites += [(rec, "bootstrap_p_phI") for rec in sweep if rec["depth"] != N_TOP]
@@ -193,7 +193,6 @@ sheet = sheet.merge(atlas, on="gene", how="left", validate="one_to_one")
 assert sheet.notna()["rank"].all(), \
     f"not in ranked_atlas.csv: {sorted(sheet.loc[sheet['rank'].isna(), 'gene'])}"
 
-# See PROVENANCE.md, Trial-validation figure — `final_plots/figure_trial_validation_immune_stages_R.png` for the bit-identical scores check.
 assert (sheet["pu_score"].values == top["pu_score"].values).all(), \
     "pu_score disagrees between ranked_atlas.csv and full_model_pu_scores.csv"
 

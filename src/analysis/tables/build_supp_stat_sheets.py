@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Flattens statistics JSON outputs into supplementary-table sheets under figure_data/, covering Supp Tables 7, 8, 10, 11 and 14.
 
-See REPRODUCIBILITY.md, Stage-1 step order, for pipeline order, outputs, and statistic provenance.
+See REPRODUCIBILITY.md for the step order.
 """
 import json
 import os
@@ -49,7 +49,7 @@ def heldout_trial_stats(j):
                         dtype=object)
 
 
-# Group order and naming: see REPRODUCIBILITY.md, Stage-1 step order.
+# Group order and naming: see REPRODUCIBILITY.md.
 GROUP_ORDER = ["approved", "in-trial", "non-target"]
 
 
@@ -97,7 +97,7 @@ def scrambled_control_stats(j):
 # Supp Table 10: bootstrap trial enrichment
 # --------------------------------------------------------------------------------------------
 def immune_stages_bootstrap(j):
-    """See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts."""
+    """See REPRODUCIBILITY.md."""
     rows = []
     for model, pre in [("full", ""), ("genetics_only", "gen_")]:
         for label, key in [("Phase >= 1 (any immune trial)", "phI"),
@@ -120,7 +120,7 @@ def immune_stages_bootstrap(j):
 
 
 def immune_stages_depth_sweep(j):
-    """See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts."""
+    """See REPRODUCIBILITY.md."""
     rows = []
     for r in j["depth_sweep"]:
         ctrl_pct = r["ctrl_phI_mean_pct"]
@@ -212,7 +212,7 @@ def check_score_by_group(j):
 
 
 def check_permutation(j_scr):
-    """See REPRODUCIBILITY.md, What a green gate does not cover."""
+    """See REPRODUCIBILITY.md."""
     null = pd.read_csv(fd("label_permutation_null.csv"))
     pv = pd.read_csv(fd("label_permutation_pvalues.csv"))
     ladder = pd.read_csv(fd("panelA_auc_ladder.csv")).set_index("model")["auc"]
@@ -256,7 +256,7 @@ def check_scrambled(j):
 
 
 def check_immune_stages(j):
-    """See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts."""
+    """See REPRODUCIBILITY.md."""
     assert j["N_top"] == 50, f"the published table is a top 50, this JSON says {j['N_top']}"
     top = pd.read_csv(fd("immune_stages_top50.csv"))
     assert len(top) == j["N_top"], f"immune_stages_top50.csv has {len(top)} rows, not {j['N_top']}"
@@ -316,7 +316,7 @@ def check_immune_stages(j):
 
 
 def check_leakage(j):
-    """See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts."""
+    """See REPRODUCIBILITY.md."""
     cmp_ = pd.read_csv(fd("leakage_controlled_comparison.csv"))
     # Loops both arms: the standard arm's ns marker is also on a published figure, needing the same check.
     expect_pos = {"standard_taskA": 727, "leakage_controlled": 535}
@@ -334,7 +334,7 @@ def check_leakage(j):
                 f"n_pos disagrees between the DeLong JSON and the {method!r} {arm_name} row"
         assert abs(a["delta"] - (a["auc_pu"] - a["auc_gps"])) < 1e-15, \
             f"{arm_name} delta {a['delta']} is not auc_pu - auc_gps"
-        # See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+        # See REPRODUCIBILITY.md.
         p = a["p_holm"]
         want = ("****" if p < 1e-4 else "***" if p < 1e-3 else "**" if p < 1e-2
                 else "*" if p < 5e-2 else "ns")
@@ -347,7 +347,7 @@ def check_leakage(j):
 
 
 def check_vignette_knn(j):
-    """See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts."""
+    """See REPRODUCIBILITY.md."""
     assert j["condition"] == "Stim48hr", \
         f"the published neighborhood is Stim48hr only, this JSON says {j['condition']!r}"
     assert j["focal"] == "STAT4", f"the vignette gene is STAT4, this JSON says {j['focal']!r}"

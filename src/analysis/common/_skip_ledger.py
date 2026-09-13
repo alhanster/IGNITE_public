@@ -44,7 +44,7 @@ if __name__ == "__main__":
         # all, so they are not skips this ledger can see, and they were not re-derived either.
         print("No steps skipped: every table `make tables` produces was re-derived on this run.")
         print("  The 11 opt-in tables have no producer in this stage and are unchanged;")
-        print("  see REPRODUCIBILITY.md, Reproduction boundary.")
+        print("  see REPRODUCIBILITY.md.")
         raise SystemExit(0)
     n_out = sum(len(s["outputs"]) for s in skips)
     print("")
@@ -60,5 +60,5 @@ if __name__ == "__main__":
     print("")
     print("  These tables are the committed values, not products of this run, so")
     print("  `make verify-tables` compares them against themselves and passes trivially.")
-    print("  See REPRODUCIBILITY.md, Reproduction boundary.")
+    print("  See REPRODUCIBILITY.md.")
     print("")

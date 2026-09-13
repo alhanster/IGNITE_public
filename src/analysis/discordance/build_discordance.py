@@ -52,7 +52,7 @@ DRIVER_FEATURES = [
     ("gene_burden_score", "Rare-variant burden"),
 ]
 
-# See PROVENANCE.md, Written by the opt-in `make discordance-network` target (6 files).
+# See PROVENANCE.md.
 CACHE_NET = os.path.join(FIGDATA, "discordance_network.csv")
 CACHE_NODES = os.path.join(FIGDATA, "discordance_network_nodes.csv")
 CACHE_GO = os.path.join(FIGDATA, "discordance_go_enrichment.csv")
@@ -253,14 +253,14 @@ core = d[d.core != "none"][
 ].sort_values(["core", "rank_shift"])
 core.to_csv(os.path.join(FIGDATA, "discordance_core_genes.csv"), index=False)
 
-# See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+# See REPRODUCIBILITY.md.
 expect = {"promoted": int((d.core == "promoted").sum()),
           "demoted": int((d.core == "demoted").sum())}
 core_genes = set(d.loc[d.core != "none", "gene"])
 net_stats = {}
 stats_dark = {}
 
-# See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+# See REPRODUCIBILITY.md.
 problems = []
 n_dark_prom = None
 
@@ -289,7 +289,7 @@ if os.path.exists(CACHE_DARK):
                             % (int(prom_rows.iloc[0]["n"]), expect["promoted"]))
         n_dark_prom = int(prom_rows.iloc[0]["n_dark"])
 
-# See REPRODUCIBILITY.md, Build-time assertions inside analysis scripts.
+# See REPRODUCIBILITY.md.
 if os.path.exists(CACHE_GO):
     go_ = pd.read_csv(CACHE_GO)
     gprom = go_[go_.direction == "promoted"] if "direction" in go_.columns else go_.iloc[:0]
@@ -310,7 +310,7 @@ if os.path.exists(CACHE_GO):
 
 if problems and not _platform.on_reference_platform():
     # The cache describes the reference platform's core sets; a refit elsewhere can move them by a
-    # gene. Reported, not fatal, off the reference platform. See REPRODUCIBILITY.md, Cross-platform reproduction.
+    # gene. Reported, not fatal, off the reference platform. See REPRODUCIBILITY.md.
     print("  WARNING (not the reference platform): STRING/GO cache describes different core sets:\n"
           + "".join("    %s\n" % p for p in problems))
     problems = []
