@@ -126,7 +126,7 @@ test:
 	  echo "pytest is not installed in $(PY)."; \
 	  echo "  It is test-only and unpinned; install it with:  $(PY) -m pip install pytest"; \
 	  exit 1; }
-	@$(PY) -m pytest tests -q
+	@$(PY) -m pytest tools -q
 
 # STAGE 1: analysis scripts. Writes figure_data/; outputs not read by a figure go to outputs/, treated as scratch and removed by make clean.
 # Script order is load-bearing; run without -j. See REPRODUCIBILITY.md, Stage-1 step order.

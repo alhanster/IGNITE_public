@@ -14,7 +14,7 @@ __pycache__/
 # Any locally downloaded .h5ad
 *.h5ad
 
-# Raw external data, not committed; the fetch and subset scripts are outside this reproduction subset. Every input the build needs is committed under data/. Per-file provenance is documented in figure_data/PROVENANCE.md and data/perturbseq/knn/README.md.
+# Raw external data, not committed; the fetch and subset scripts are outside this reproduction subset. Every input the build needs is committed under data/. Per-file provenance is documented in figure_data/PROVENANCE.md and DATA_AVAILABILITY.md.
 /data/raw/*
 !/data/raw/.gitkeep
 

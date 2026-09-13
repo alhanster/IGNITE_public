@@ -1,9 +1,5 @@
 # src/figures — stage 2 renderers
 
-Stage 2 reads `figure_data/` and nothing else, and writes `final_plots/`. It performs no model
-fitting and does not read `data/`, so it runs from a fresh clone without the Python analysis
-environment. `make figures` runs every renderer below in order.
-
 ## Renderers
 
 | Script | Manuscript figure | Output under `final_plots/` |
@@ -19,18 +15,18 @@ environment. `make figures` runs every renderer below in order.
 | `fig_discordance.R` | Supplementary Figure 2 | `supplementary/figure_discordance_genetics_vs_full.png` |
 | `fig_leakage_controlled.R` | Supplementary Figure 3 | `supplementary/leakage_controlled_comparison.png` |
 
-`tools/supplementary_figures.tsv`
-is the single source for the S-numbers; `make supplementary` re-renders only the three
-supplementary renderers, listed there as `SUPP_RENDERERS_R` in the Makefile.
+`tools/supplementary_figures.tsv` is the single source for the S-numbers. `make supplementary`
+re-renders only the three supplementary renderers, listed as `SUPP_RENDERERS_R` in the Makefile.
 
-Each renderer writes a `.png` and a `.pdf`; the vector twin goes to `final_plots/pdf/`.
+Each renderer writes a `.png`. On macOS it also writes a vector `.pdf` to `final_plots/pdf/`;
+other platforms produce the PNG only.
 
 ## Shared helpers
 
 | File | Provides |
 |---|---|
 | `palette.R` | `TARGET_COLORS`, the drug-status colour mapping shared across figures |
-| `vector_output.R` | `save_figure(plot, out_png, out_pdf, width_cm, height_cm)`, which writes the PNG through the ragg AGG device and the PDF through a quartz device |
+| `vector_output.R` | `save_figure(plot, out_png, out_pdf, width_cm, height_cm)`, which writes the PNG through the ragg AGG device and the PDF through a quartz device (macOS only) |
 
 ## Environment
 
@@ -39,10 +35,11 @@ The R package pins are in `R-requirements.txt` and are checked by `tools/check_r
 the R library path when present. Font handling matters here: `systemfonts` and `textshaping`
 determine glyph layout for the ragg device, and are pinned for that reason.
 
-## Why figure verification is reported rather than enforced
+## Figure verification
 
-`make verify-figures` compares `final_plots/` against `final_plots.sha256`. PNG bytes track the
-local font stack, so a correct render on a different machine can differ byte-for-byte. PDFs
-carry a wall-clock creation timestamp and therefore differ on every render. Both are classified
-soft and reported; only committed artifacts and published tables fail the gate. See
-REPRODUCIBILITY.md for the full classification.
+`make verify-figures` compares `final_plots/` against `final_plots.sha256`. Under the pinned R
+stack PNG bytes reproduce; a differing PNG usually means the render did not use `.rlib/`, or ran
+on a machine with a different font and rasterization stack. PDFs carry a creation timestamp, so
+they differ on every render. Differing PNGs and PDFs are reported but do not fail the gate. It
+fails when a baseline file is missing or when `final_plots/` contains a file the baseline does not
+list. See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.

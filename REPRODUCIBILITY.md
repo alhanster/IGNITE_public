@@ -198,7 +198,8 @@ by construction; reintroducing a publish step for them would also require updati
 Table names and numbers live in `tools/supplementary_tables.tsv`, not in the packaging script,
 because `final_plots/supplementary/` filenames alone cannot carry a numbering that shifts when a
 table is added or removed. The packaging script validates that numbering for gaps and duplicates,
-excludes the frozen GPS tables, and derives a column dictionary from each file's header. It runs
+excludes the frozen GPS tables, and writes a one-line README pointing to Supplementary
+Information.pdf, which describes each table. It runs
 before `write_submission_readme.py`, which lists the directory it produces.
 
 `supplementary_data/` itself is not assembled. The statistics it would have contained are
@@ -1094,9 +1095,8 @@ for this tracking either, since that directory holds both build outputs and froz
 by other lists.
 
 `package_supplementary_tables.py` validates the manifest numbering for gaps and duplicates,
-refuses the quarantined frozen GPS tables, and derives each output's column dictionary from that
-file's actual header, never from the manifest description; a manifest description that does not
-match the file is exposed by this check rather than trusted. It runs before
+refuses the quarantined frozen GPS tables, and writes a one-line README pointing to Supplementary
+Information.pdf. It runs before
 `write_submission_readme.py`, which lists the directory it creates.
 
 Numbered supplementary tables are packaged directly from `figure_data/` and are never copied into
@@ -1182,7 +1182,7 @@ The repository draws a line between three levels of reproduction, and the checks
 |---|---|---|---|
 | `outputs/` | No (gitignored) | n/a, always scratch | Everything stage 1 emits that no figure reads. A fresh clone reruns `make tables` to obtain gene and PU scores, since none are cached. Each negation in the `.gitignore` rule corresponds to a file a retained stage-1 script still writes; removing one leaves an untracked file in `git status` after `make tables`. |
 | `data/raw/discordance/` | No | No | About 135 MB of one-time external downloads, reused only by `make discordance-network`; re-fetching costs roughly 10 minutes of network time. |
-| `final_outputs/` | No | Yes | Rebuilt by `make final-outputs` as a byte-identical copy of `final_plots/` plus two generated READMEs (the top-level README and the numbered tables' column dictionary), performing no computation. |
+| `final_outputs/` | No | Yes | Rebuilt by `make final-outputs` as a byte-identical copy of `final_plots/` plus two generated READMEs (the top-level README and a one-line pointer to Supplementary Information.pdf beside the numbered tables), performing no computation. |
 | `figure_data/` (numbered supplementary tables) | Yes | No | Needs no separate clean entry: it is never copied into `final_plots/`. |
 
 ### Cross-figure consistency (Panel D recovery)

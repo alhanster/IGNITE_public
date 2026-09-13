@@ -153,12 +153,11 @@ Redistributed here under the terms of their respective sources, each to be cited
 | Path | |
 |---|---|
 | `data/` | committed inputs |
-| `src/analysis/` | stage 1 — 30 Python steps, in one subfolder per display item plus `common/` helpers. `README.md` there maps the folders and is the PU-model settings census |
+| `src/analysis/` | stage 1 — 30 Python steps, in one subfolder per display item plus `common/` helpers. `README.md` there maps the folders and the scripts that train the PU model |
 | `src/figures/` | stage 2 — 10 renderers. `palette.R` is the shared colour convention |
 | `figure_data/` | the committed contract. `PROVENANCE.md` maps every file to its producer |
 | `outputs/` | stage-1 scratch no figure reads; nothing here is committed |
-| `tools/` | environment setup, verification, packaging |
-| `tests/` | pre-flight contract checks, run by `make test` |
+| `tools/` | environment setup, verification, packaging; also the pre-flight contract checks run by `make test` |
 | `final_plots/` | stage-2 output (mostly gitignored — rebuild with `make figures`) |
 | `final_outputs/` | assembled on demand by `make final-outputs` |
 
@@ -173,4 +172,4 @@ Cite the manuscript this repository accompanies, the upstream perturb-seq resour
 
 ## License
 
-MIT, see `LICENSE`. The license covers the code in this repository; redistributed third-party data remains under its own terms. Upstream data sources and attributions are in `NOTICE.md`.
+MIT, see `LICENSE`. The license covers the code in this repository; redistributed third-party data remains under its own terms. Upstream data sources and attributions are in `DATA_AVAILABILITY.md`.

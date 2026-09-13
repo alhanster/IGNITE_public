@@ -18,4 +18,4 @@ requests               # fetching source effect matrices / Open Targets refresh
 openpyxl               # xlsx engine for the opt-in GPS input rebuild
 
 # Test-only; imported by no build step. Required by `make test`.
-pytest                 # tests/test_reproduction_contracts.py
+pytest                 # tools/test_reproduction_contracts.py

@@ -15,7 +15,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 SUB = os.path.join(ROOT, "final_outputs")
 FIGDATA = os.path.join(ROOT, "figure_data")
 
-# Shared with the supplementary-tables README, so the two packaged READMEs cannot disagree.
+# The platform statement is defined once, in the table packager.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from package_supplementary_tables import PLATFORM_STATEMENT  # noqa: E402
 

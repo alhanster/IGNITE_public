@@ -178,7 +178,8 @@ def _xref_sources():
     for sub in ("src", "tools"):
         for dirpath, _, names in os.walk(os.path.join(ROOT, sub)):
             for n in names:
-                if n.endswith((".py", ".R", ".sh", ".md")):
+                # This file quotes the pointer pattern in its own comments, so it is not a source.
+                if n.endswith((".py", ".R", ".sh", ".md")) and n != os.path.basename(__file__):
                     out.append(os.path.relpath(os.path.join(dirpath, n), ROOT))
     out += ["Makefile", "README.md", ".gitignore", "requirements.txt",
             "R-requirements.txt", "REPRODUCIBILITY.md", "DATA_AVAILABILITY.md"]

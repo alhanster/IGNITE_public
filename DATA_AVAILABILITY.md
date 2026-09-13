@@ -97,10 +97,15 @@ file raises rather than falling back to the network.
 
 ## Licensing
 
-The code in this repository is licensed under the MIT license; see `LICENSE`, with upstream attributions in `NOTICE.md`. Redistributed
+The code in this repository is licensed under the MIT license; see `LICENSE`, with upstream attributions below. Redistributed
 third-party data files remain under their original providers' terms, and this repository does not
 relicense them. Users intending to reuse or redistribute any external dataset named above
 (Open Targets, HGNC, STRING, Gene Ontology / UniProt-GOA, GWAS Catalog, the perturb-seq dataset
 of Zhu, Dann et al. (2025), gnomAD, the GPS dataset, or any other source listed here) should
 consult that provider's own terms and, where applicable, cite the corresponding publication or
 resource independently of this repository.
+
+Portions of the perturb-seq feature-engineering approach are derived from
+emdann/GWT_perturbseq_analysis_2025 (MIT License, (c) 2025 Emma Dann). The scripts that implement
+it are not part of this repository (only their committed output, `pu_model_matrix.parquet`, is),
+but the attribution travels with the data.
