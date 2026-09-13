@@ -40,7 +40,7 @@ STAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 # Delegates toolchain-version checks to the existing checkers, which exit non-zero on mismatch.
 # See REPRODUCIBILITY.md, What a green gate does not cover.
 PINS_OK=yes
-"$PY_BIN" src/analysis/_version_guard.py >/dev/null 2>&1 || PINS_OK=no
+"$PY_BIN" src/analysis/common/_version_guard.py >/dev/null 2>&1 || PINS_OK=no
 "$RS_BIN" tools/check_r_versions.R       >/dev/null 2>&1 || PINS_OK=no
 
 N_FILES="$(find final_plots -type f ! -name .gitkeep ! -name .DS_Store -print0 | tr -dc '\0' | wc -c | tr -d ' ')"
@@ -62,7 +62,7 @@ OUT=final_plots.sha256
   echo "# IGNITE final_plots output baseline"
   echo "#"
   echo "# date:     $STAMP"
-  echo "# xgboost:  $XGB   (pinned in requirements.txt; enforced by src/analysis/_version_guard.py)"
+  echo "# xgboost:  $XGB   (pinned in requirements.txt; enforced by src/analysis/common/_version_guard.py)"
   echo "# R:        $RVER with ggplot2 $GGP   (pinned in R-requirements.txt; checked by make check-versions)"
   echo "#"
   if [ "$PINS_OK" = no ]; then

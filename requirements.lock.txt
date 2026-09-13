@@ -1,7 +1,7 @@
 # Exact resolved Python environment for the reproduction path.
 # Generated with: .venv/bin/python -m pip freeze, under Python 3.12.13 on Darwin arm64.
 # requirements.txt is the human-readable declaration and carries the pins that are
-# enforced at import by src/analysis/_version_guard.py; this file is the full
+# enforced at import by src/analysis/common/_version_guard.py; this file is the full
 # transitive closure of that environment.
 # Install with: pip install -r requirements.lock.txt
 #

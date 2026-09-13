@@ -4,6 +4,22 @@ What trains a PU model, what consumes its scores, and every setting either of th
 
 The PU model has wide reach in the pipeline: ten scripts train one, seven more read its scores, and together they feed every display item except Fig 2. Settings live in five `base_learner` definitions and four bagging loops rather than in one place, so a config drift in any copy changes published numbers with no error or traceback. `_version_guard.py` closes the same failure mode for the xgboost pin.
 
+## Layout
+
+| Folder | Scripts for |
+|---|---|
+| `common/` | shared helpers: `_version_guard`, `_stats`, `_platform`, `_skip_ledger`, `_gene_names` |
+| `model/` | the PU model and its decomposition (Fig 4, Supplementary Table 6) |
+| `evidence/` | genetic and perturbational evidence tables (Fig 2, Fig 3) |
+| `validation/` | trial and temporal validation (Fig 5, Fig 6, Supplementary Table 7) |
+| `specificity/` | specificity and leakage control (Fig 7, S3) |
+| `vignette/` | STAT4 vignette and kNN signatures (Fig 8, Supplementary Tables 14-15) |
+| `permutation/` | label-permutation and scrambled-feature controls (S1) |
+| `discordance/` | discordance analysis (S2) |
+| `tables/` | cross-cutting supplementary tables |
+
+Modules import each other by bare name. A script that needs a module from another folder puts that folder on `sys.path` next to its own, so run every script by path from the repo root, as the Makefile does.
+
 Counts below are for orientation only. See [Re-deriving the counts](#re-deriving-the-counts) for the derivation, and `figure_data/PROVENANCE.md` for the note on integers that are not recomputed.
 
 ---
@@ -154,5 +170,5 @@ grep -rn "def pu_bag\|pu_bag(" --include="*.py" src
 grep -rn "full_model_pu_scores" --include="*.py" --include="*.R" src
 
 # feature groups still partition the matrix
-grep -n "^GENETIC\|^PERTURBATIONAL\|^OBSERV" src/analysis/attribution_decomposition.py
+grep -n "^GENETIC\|^PERTURBATIONAL\|^OBSERV" src/analysis/model/attribution_decomposition.py
 ```

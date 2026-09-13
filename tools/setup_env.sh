@@ -45,7 +45,7 @@ EOF
   "$VENV/bin/python" -m pip install --quiet --upgrade pip
   "$VENV/bin/python" -m pip install --quiet -r requirements.txt
   echo "  installed into .venv/"
-  "$VENV/bin/python" src/analysis/_version_guard.py
+  "$VENV/bin/python" src/analysis/common/_version_guard.py
 fi
 
 # --------------------------------------------------------------------------- R

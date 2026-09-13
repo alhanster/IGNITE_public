@@ -17,7 +17,7 @@
 # Python and R may need separate environments. Override with:
 #   make tables  PY=/path/to/py-env/bin/python3
 #   make figures RSCRIPT=/path/to/r-env/bin/Rscript
-# PY must be the pinned environment (requirements.txt: xgboost==3.3.0); src/analysis/_version_guard.py aborts on a mismatch. See REPRODUCIBILITY.md, Environment and version pins.
+# PY must be the pinned environment (requirements.txt: xgboost==3.3.0); src/analysis/common/_version_guard.py aborts on a mismatch. See REPRODUCIBILITY.md, Environment and version pins.
 PY_AUTO := $(shell tools/detect_python.sh)
 PY      ?= $(if $(PY_AUTO),$(PY_AUTO),python3)
 RSCRIPT ?= Rscript
@@ -96,7 +96,7 @@ install:
 # See REPRODUCIBILITY.md, `make check-versions`.
 check-versions:
 	@echo "  PY=$(PY) -> $$(command -v $(PY) 2>/dev/null || echo 'NOT FOUND') ($$($(PY) -V 2>&1))"
-	@$(PY) src/analysis/_version_guard.py && echo "  PY=$(PY) matches the committed pins"
+	@$(PY) src/analysis/common/_version_guard.py && echo "  PY=$(PY) matches the committed pins"
 	@$(RSCRIPT) tools/check_r_versions.R
 
 all: tables
@@ -134,37 +134,37 @@ tables:
 	rm -rf logs
 	rm -f outputs/_skipped.tsv
 	mkdir -p figure_data outputs/model outputs/tables outputs/prospective outputs/discordance outputs/knn data/derived
-	$(RUN) py src/analysis/_version_guard.py
-	$(RUN) py src/analysis/make_enrichment_table.py
-	$(RUN) py src/analysis/pu_target_model.py
-	$(RUN) py src/analysis/attribution_decomposition.py
-	$(RUN) py src/analysis/reshape_attribution_to_panels.py
-	$(RUN) py src/analysis/compute_nb_significance.py
-	$(RUN) py src/analysis/recompute_block_signal.py
-	$(RUN) py src/analysis/make_panelD_recovery.py
-	$(RUN) py src/analysis/build_score_by_group.py
-	$(RUN) py src/analysis/build_genetic_data_tables.py
-	$(RUN) py src/analysis/build_perturbational_fg_tables.py
-	$(RUN) py src/analysis/build_vignette_panelB.py
-	$(RUN) py src/analysis/build_vignette_panelD_knn.py
-	$(RUN) py src/analysis/build_vignette_meta.py
-	$(RUN) py src/analysis/build_specificity_matrix.py
-	$(RUN) py src/analysis/compute_delong_specificity.py
-	$(RUN) py src/analysis/build_leakage_controlled.py
-	$(RUN) py src/analysis/build_temporal_holdout.py
-	$(RUN) py src/analysis/build_heldout_trial_auc.py
-	$(RUN) py src/analysis/build_ranked_atlas_table.py
-	$(RUN) py src/analysis/build_immune_stages_data.py
-	$(RUN) py src/analysis/build_feature_dictionary.py
-	$(RUN) py src/analysis/build_drug_status_table.py
-	$(RUN) py src/analysis/build_univariate_by_group.py
-	$(RUN) py src/analysis/build_orthogonality_tables.py
-	$(RUN) py src/analysis/build_coalition_tables.py
-	$(RUN) py src/analysis/build_supp_stat_sheets.py
-	$(RUN) py src/analysis/build_knn_nearest_target.py
-	$(RUN) py src/analysis/add_knn_approved_drugs.py
-	$(RUN) py src/analysis/build_discordance.py
-	@$(PY) src/analysis/_skip_ledger.py
+	$(RUN) py src/analysis/common/_version_guard.py
+	$(RUN) py src/analysis/evidence/make_enrichment_table.py
+	$(RUN) py src/analysis/model/pu_target_model.py
+	$(RUN) py src/analysis/model/attribution_decomposition.py
+	$(RUN) py src/analysis/model/reshape_attribution_to_panels.py
+	$(RUN) py src/analysis/model/compute_nb_significance.py
+	$(RUN) py src/analysis/model/recompute_block_signal.py
+	$(RUN) py src/analysis/model/make_panelD_recovery.py
+	$(RUN) py src/analysis/model/build_score_by_group.py
+	$(RUN) py src/analysis/evidence/build_genetic_data_tables.py
+	$(RUN) py src/analysis/evidence/build_perturbational_fg_tables.py
+	$(RUN) py src/analysis/vignette/build_vignette_panelB.py
+	$(RUN) py src/analysis/vignette/build_vignette_panelD_knn.py
+	$(RUN) py src/analysis/vignette/build_vignette_meta.py
+	$(RUN) py src/analysis/specificity/build_specificity_matrix.py
+	$(RUN) py src/analysis/specificity/compute_delong_specificity.py
+	$(RUN) py src/analysis/specificity/build_leakage_controlled.py
+	$(RUN) py src/analysis/validation/build_temporal_holdout.py
+	$(RUN) py src/analysis/validation/build_heldout_trial_auc.py
+	$(RUN) py src/analysis/tables/build_ranked_atlas_table.py
+	$(RUN) py src/analysis/validation/build_immune_stages_data.py
+	$(RUN) py src/analysis/tables/build_feature_dictionary.py
+	$(RUN) py src/analysis/tables/build_drug_status_table.py
+	$(RUN) py src/analysis/evidence/build_univariate_by_group.py
+	$(RUN) py src/analysis/evidence/build_orthogonality_tables.py
+	$(RUN) py src/analysis/model/build_coalition_tables.py
+	$(RUN) py src/analysis/tables/build_supp_stat_sheets.py
+	$(RUN) py src/analysis/vignette/build_knn_nearest_target.py
+	$(RUN) py src/analysis/vignette/add_knn_approved_drugs.py
+	$(RUN) py src/analysis/discordance/build_discordance.py
+	@$(PY) src/analysis/common/_skip_ledger.py
 	@echo ""
 	@echo "stage 1 complete. Commit figure_data/ so that \`make figures\` needs no refit."
 
@@ -194,19 +194,19 @@ figures:
 # Opt-in permutation null for the AUC ladder, not part of `make tables`. Budget about 8.5 hours at PERM_JOBS=11 (measured 2026-09-06: 7 h 17 m for the 1,000 permutations, plus 1 h 16 m for the 99 scrambled-feature draws that this target also runs). Reads the committed figure_data/panelA_auc_ladder.csv and checkpoints every 25 permutations so an interrupted run resumes. Writes directly into figure_data/; revert a smoke test with `git checkout -- figure_data`. See REPRODUCIBILITY.md, permutation-null / permutation-null-finalize.
 permutation-null:
 	mkdir -p figure_data outputs/permutation
-	$(RUN) py src/analysis/run_label_permutation.py --n-perm $(PERM_N) --jobs $(PERM_JOBS)
-	$(RUN) py src/analysis/scrambled_feature_control.py --n-scramble $(PERM_SCR)
+	$(RUN) py src/analysis/permutation/run_label_permutation.py --n-perm $(PERM_N) --jobs $(PERM_JOBS)
+	$(RUN) py src/analysis/permutation/scrambled_feature_control.py --n-scramble $(PERM_SCR)
 	@echo ""
 	@echo "permutation null rebuilt. Check it reproduced: make verify-tables"
 
 # Recomputes label_permutation_pvalues.csv from the already-committed null table against the current ladder, in seconds rather than hours. Runs when `make figures` reports stale p-values while the null itself remains valid.
 permutation-null-finalize:
-	$(RUN) py src/analysis/finalize_label_permutation.py
+	$(RUN) py src/analysis/permutation/finalize_label_permutation.py
 
 # Opt-in target, not part of `make tables`. Builds S2's STRING coherence, GO over-representation and dark-proteome tables from about 135 MB of external STRING and UniProt-GOA archives, cached in gitignored data/raw/discordance/ (about 10 minutes on first run, about 1 minute after). Rerun when the core gene sets change (pum.SEED, tree depth, or the feature matrix): run make tables, then make discordance-network, then make tables again. `--validate` checks the cached data still matches upstream STRING. See REPRODUCIBILITY.md, discordance-network.
 discordance-network:
 	mkdir -p figure_data data/raw/discordance
-	$(RUN) py src/analysis/fetch_discordance_network.py --n-null $(DISC_NULL)
+	$(RUN) py src/analysis/discordance/fetch_discordance_network.py --n-null $(DISC_NULL)
 	@echo ""
 	@echo "STRING/GO cache rebuilt. Now: make tables   (folds it into discordance_stats.json)"
 	@echo "Then check it reproduced: make verify-tables"
@@ -214,7 +214,7 @@ discordance-network:
 # vignette-panelc asserts Open Targets release 26.06 and aborts without writing if a different release is found, since scores move between releases.
 vignette-panelc:
 	mkdir -p figure_data
-	$(RUN) py src/analysis/fetch_vignette_panelC_gwas.py
+	$(RUN) py src/analysis/vignette/fetch_vignette_panelC_gwas.py
 	@echo ""
 	@echo "panel c refreshed. Check it reproduced: make verify-tables"
 
@@ -222,7 +222,7 @@ vignette-panelc:
 # Run make tables && make verify-tables afterward: gps_max_overall and the 453-gene list must reproduce byte-identically, or the source table or a derivation rule has changed.
 # See REPRODUCIBILITY.md, gps-inputs.
 gps-inputs:
-	$(RUN) py src/analysis/build_gps_per_gene.py
+	$(RUN) py src/analysis/specificity/build_gps_per_gene.py
 	@echo ""
 	@echo "GPS inputs re-derived. Confirm nothing moved: make tables && make verify-tables"
 
@@ -230,10 +230,10 @@ gps-inputs:
 # Without it, build_vignette_panelD_knn.py skips and leaves vignette_panelD_knn.csv and vignette_knn_stats.json at their committed values, so verify-tables passes trivially for those two files.
 # See REPRODUCIBILITY.md, knn-signatures.
 knn-signatures:
-	$(RUN) py src/analysis/build_knn_signatures.py
+	$(RUN) py src/analysis/vignette/build_knn_signatures.py
 	@echo ""
 	@echo "Signature matrices rebuilt. Re-derive panel d, then check it reproduced:"
-	@echo "  $(RUN) py src/analysis/build_vignette_panelD_knn.py && make verify-tables"
+	@echo "  $(RUN) py src/analysis/vignette/build_vignette_panelD_knn.py && make verify-tables"
 
 # verify-tables checks numeric reproduction (hard failure, portable); verify-figures checks pixel reproduction (reported only, machine-specific).
 # See REPRODUCIBILITY.md, `make verify-tables` and `make verify-figures`: the five-class system.

@@ -38,7 +38,7 @@ make final-outputs    # assemble the submission package
 
 ```
 data/          committed inputs
-  └─ stage 1: src/analysis/*.py  ──►  figure_data/   (COMMITTED — the contract)
+  └─ stage 1: src/analysis/*/*.py ─►  figure_data/   (COMMITTED — the contract)
                                         └─ stage 2: src/figures/*.R ──► final_plots/
 ```
 
@@ -135,7 +135,7 @@ Every input `make tables` needs is committed under `data/`; the offline build wo
 make knn-signatures   # OPT-IN, network, ~3-4 min
 ```
 
-which streams them from the public source via HTTP range requests. The single step that reads them, `src/analysis/build_vignette_panelD_knn.py`, backing panel d of the STAT4 vignette, skips with a message when they are absent and leaves its two committed `figure_data/` tables in place, so a clean clone still runs `make tables` end to end and passes `make verify-tables`. The row and column gene-name lists beside the matrices are committed, so their identity can be checked without them.
+which streams them from the public source via HTTP range requests. The single step that reads them, `src/analysis/vignette/build_vignette_panelD_knn.py`, backing panel d of the STAT4 vignette, skips with a message when they are absent and leaves its two committed `figure_data/` tables in place, so a clean clone still runs `make tables` end to end and passes `make verify-tables`. The row and column gene-name lists beside the matrices are committed, so their identity can be checked without them.
 
 Upstream source: the genome-scale CRISPRi Perturb-seq resource in primary human CD4+ T cells of Zhu, Dann et al. (2025), released via the CZI Virtual Cells Platform (`s3://genome-scale-tcell-perturb-seq/marson2025_data/GWCD4i.DE_stats.h5ad`). That resource is the upstream scientific data source for every perturb-seq feature here and must be cited in any work using them.
 
@@ -153,7 +153,7 @@ Redistributed here under the terms of their respective sources, each to be cited
 | Path | |
 |---|---|
 | `data/` | committed inputs |
-| `src/analysis/` | stage 1 — 30 Python steps. `README.md` there is the PU-model settings census |
+| `src/analysis/` | stage 1 — 30 Python steps, in one subfolder per display item plus `common/` helpers. `README.md` there maps the folders and is the PU-model settings census |
 | `src/figures/` | stage 2 — 10 renderers. `palette.R` is the shared colour convention |
 | `figure_data/` | the committed contract. `PROVENANCE.md` maps every file to its producer |
 | `outputs/` | stage-1 scratch no figure reads; nothing here is committed |

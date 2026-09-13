@@ -16,7 +16,7 @@ import sys
 import pytest
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, os.path.join(ROOT, "src", "analysis"))
+sys.path.insert(0, os.path.join(ROOT, "src", "analysis", "common"))
 sys.path.insert(0, os.path.join(ROOT, "src"))
 
 
@@ -122,8 +122,9 @@ def test_makefile_declares_the_submission_target():
 
 def test_every_stage1_script_named_by_the_makefile_exists():
     mk = _read("Makefile")
-    missing = [p for p in re.findall(r"src/analysis/([A-Za-z0-9_]+\.py)", mk)
-               if not os.path.exists(os.path.join(ROOT, "src", "analysis", p))]
+    named = re.findall(r"src/analysis/((?:[A-Za-z0-9_]+/)?[A-Za-z0-9_]+\.py)", mk)
+    assert len(named) >= 30, f"found only {len(named)} script paths; has the path layout changed?"
+    missing = [p for p in named if not os.path.exists(os.path.join(ROOT, "src", "analysis", p))]
     assert missing == [], f"Makefile invokes a script that does not exist: {missing}"
 
 

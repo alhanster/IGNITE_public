@@ -7,7 +7,7 @@ pandas==3.0.5          # verified; every table read/write
 scipy==1.18.0          # verified; Fisher exact (IEI), Wilcoxon/permutation (attribution)
 scikit-learn==1.9.0    # verified; CV splitting and AUC
 xgboost==3.3.0         # base learner (pu_target_model.py). A minor bump moves STAT4 rank 9 -> 11
-                       # A mismatched pin can change results deterministically with no error; enforced at import by src/analysis/_version_guard.py.
+                       # A mismatched pin can change results deterministically with no error; enforced at import by src/analysis/common/_version_guard.py.
 pyarrow==25.0.0        # verified; parquet engine for pu_model_matrix.parquet (used via pandas)
 matplotlib==3.11.0     # diagnostic plots only, from pu_target_model.py and
                        # Unhashed (stage-2 rendering is R, output gitignored) but pinned: matplotlib stamps its version into the PNG tEXt chunk.

@@ -1,7 +1,7 @@
 # IGNITE final_plots output baseline
 #
 # date:     2026-09-12T15:52:34Z
-# xgboost:  3.3.0   (pinned in requirements.txt; enforced by src/analysis/_version_guard.py)
+# xgboost:  3.3.0   (pinned in requirements.txt; enforced by src/analysis/common/_version_guard.py)
 # R:        4.4.1 with ggplot2 4.0.3   (pinned in R-requirements.txt; checked by make check-versions)
 #
 # produced: git clone <IGNITE> /tmp/verify && cd /tmp/verify && \

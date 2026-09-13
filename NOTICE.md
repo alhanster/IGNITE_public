@@ -9,7 +9,7 @@ each is used under.
 
 The perturb-seq feature layers consumed by this repository (the committed
 `data/perturbseq/pu/pu_model_matrix.parquet`, and the knockdown signature matrices rebuilt by
-`src/analysis/build_knn_signatures.py`) derive from the genome-scale CRISPRi Perturb-seq resource
+`src/analysis/vignette/build_knn_signatures.py`) derive from the genome-scale CRISPRi Perturb-seq resource
 in primary human CD4+ T cells of Zhu, Dann et al. (2025), released via the CZI Virtual Cells
 Platform:
 
