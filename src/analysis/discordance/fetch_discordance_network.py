@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """STRING coherence, GO over-representation and dark-proteome tests for the discordance figure's core sets. Opt-in, run via make discordance-network.
 
-See DATA_AVAILABILITY.md for archive provenance, and the Makefile's discordance-network target for rerun conditions.
+See data/DATA_AVAILABILITY.md for archive provenance, and the Makefile's discordance-network target for rerun conditions.
 """
 import argparse
 import gzip

@@ -5,10 +5,10 @@ args <- commandArgs(trailingOnly = FALSE)
 script_path <- sub("^--file=", "", args[grep("^--file=", args)])
 script_dir <- if (length(script_path)) dirname(normalizePath(script_path)) else getwd()
 repo_root <- normalizePath(file.path(script_dir, ".."))
-req_file <- file.path(repo_root, "R-requirements.txt")
+req_file <- file.path(repo_root, "src/figures/R-requirements.txt")
 
 if (!file.exists(req_file)) {
-  cat("  R-requirements.txt not found at", req_file, "\n")
+  cat("  src/figures/R-requirements.txt not found at", req_file, "\n")
   quit(status = 1)
 }
 
@@ -18,7 +18,7 @@ lines <- trimws(sub("#.*$", "", raw))
 pins <- lines[grepl("^[A-Za-z0-9._-]+==[0-9]", lines)]
 
 if (!length(pins)) {
-  cat("  no exact == pins in R-requirements.txt; nothing enforced\n")
+  cat("  no exact == pins in src/figures/R-requirements.txt; nothing enforced\n")
   quit(status = 0)
 }
 
@@ -73,9 +73,9 @@ if (length(problems)) {
   cat("R ENVIRONMENT MISMATCH -- rendered figures will NOT byte-match the baseline\n")
   cat(strrep("=", 72), "\n")
   cat(problems, sep = "\n"); cat("\n\n")
-  cat("The figures are compared byte-for-byte against final_plots.sha256. Rendering\n")
+  cat("The figures are compared byte-for-byte against tools/final_plots.sha256. Rendering\n")
   cat("libraries change pixel output between releases, so a mismatch here shows up as a\n")
-  cat("figure regression with no other symptom. See R-requirements.txt for exact installs.\n")
+  cat("figure regression with no other symptom. See src/figures/R-requirements.txt for exact installs.\n")
   cat(strrep("=", 72), "\n")
   quit(status = 1)
 }

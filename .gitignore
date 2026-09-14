@@ -13,7 +13,7 @@ __pycache__/
 # Any locally downloaded .h5ad
 *.h5ad
 
-# Raw external data, not committed; the fetch and subset scripts are outside this reproduction subset. Every input the build needs is committed under data/. Per-file provenance is documented in figure_data/PROVENANCE.md and DATA_AVAILABILITY.md.
+# Raw external data, not committed; the fetch and subset scripts are outside this reproduction subset. Every input the build needs is committed under data/. Per-file provenance is documented in figure_data/PROVENANCE.md and data/DATA_AVAILABILITY.md.
 /data/raw/*
 !/data/raw/.gitkeep
 
@@ -22,6 +22,9 @@ __pycache__/
 
 # pytest
 .pytest_cache/
+
+# Local pip freeze of the working environment; no build step reads it. requirements.txt holds the pins.
+/requirements.lock.txt
 
 # See REPRODUCIBILITY.md.
 /logs/

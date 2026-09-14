@@ -169,7 +169,7 @@ def _xref_sources():
                 if n.endswith((".py", ".R", ".sh", ".md")) and n != os.path.basename(__file__):
                     out.append(os.path.relpath(os.path.join(dirpath, n), ROOT))
     out += ["Makefile", "README.md", ".gitignore", "requirements.txt",
-            "R-requirements.txt", "REPRODUCIBILITY.md", "DATA_AVAILABILITY.md"]
+            "src/figures/R-requirements.txt", "REPRODUCIBILITY.md", "data/DATA_AVAILABILITY.md"]
     return [f for f in sorted(set(out)) if os.path.exists(os.path.join(ROOT, f))]
 
 

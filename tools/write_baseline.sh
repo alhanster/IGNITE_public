@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerates final_plots.sha256 from the final_plots/ tree.
+# Regenerates tools/final_plots.sha256 from the final_plots/ tree.
 # Usage: tools/write_baseline.sh <py-interpreter> <rscript-interpreter>
 # See REPRODUCIBILITY.md for prerequisites.
 
@@ -24,7 +24,7 @@ fi
 # Confirms the working tree matches HEAD before the baseline is written.
 # See REPRODUCIBILITY.md.
 DIRTY_PATHS="$(git status --porcelain -- \
-                 src Makefile requirements.txt R-requirements.txt tools data figure_data \
+                 src Makefile requirements.txt src/figures/R-requirements.txt tools data figure_data \
                2>/dev/null || true)"
 if [ -n "$DIRTY_PATHS" ]; then
   TREE_OK=no
@@ -57,13 +57,13 @@ while IFS= read -r -d '' f; do
   fi
 done < <(find final_plots -type f ! -name .gitkeep ! -name .DS_Store -print0)
 
-OUT=final_plots.sha256
+OUT=tools/final_plots.sha256
 {
   echo "# IGNITE final_plots output baseline"
   echo "#"
   echo "# date:     $STAMP"
   echo "# xgboost:  $XGB   (pinned in requirements.txt; enforced by src/analysis/common/_version_guard.py)"
-  echo "# R:        $RVER with ggplot2 $GGP   (pinned in R-requirements.txt; checked by make check-versions)"
+  echo "# R:        $RVER with ggplot2 $GGP   (pinned in src/figures/R-requirements.txt; checked by make check-versions)"
   echo "#"
   if [ "$PINS_OK" = no ]; then
     echo "# ############################################################################"
@@ -117,7 +117,7 @@ OUT=final_plots.sha256
   echo "# clones rendered through \`make figures\`. So a PNG mismatch on this machine is a real"
   echo "# signal, usually a render that did not resolve .rlib and used a different ragg."
   echo "# What is not pinnable is the native rasterization stack -- ragg goes through"
-  echo "# freetype/libpng and the installed fonts (see R-requirements.txt) -- so a DIFFERENT"
+  echo "# freetype/libpng and the installed fonts (see src/figures/R-requirements.txt) -- so a DIFFERENT"
   echo "# MACHINE can reproduce every NUMBER exactly and still fail these hashes."
   echo "#"
   echo "# So \`make verify-figures\` reports rendered-PNG differences without failing, and the"

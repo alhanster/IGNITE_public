@@ -201,7 +201,7 @@ lib <- Sys.getenv("IGNITE_RLIB"); .libPaths(c(lib, .libPaths()))
 repo <- "https://cloud.r-project.org"
 
 # Parses the pins programmatically rather than restating them, using the same pkg==X.Y.Z format check_r_versions.R relies on.
-raw   <- readLines("R-requirements.txt", warn = FALSE)
+raw   <- readLines("src/figures/R-requirements.txt", warn = FALSE)
 lines <- trimws(sub("#.*$", "", raw))
 pins  <- lines[grepl("^[A-Za-z0-9._-]+==[0-9]", lines)]
 want  <- setNames(sub("^[^=]+==", "", pins), sub("==.*$", "", pins))

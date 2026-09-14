@@ -27,7 +27,7 @@ Requires Python >= 3.12. Exact pins in `requirements.txt`:
 
 ## R — stage 2, `make figures`
 
-Requires R 4.4.1, parsed by `tools/check_r_versions.R` from `R-requirements.txt`. Exact pins:
+Requires R 4.4.1, parsed by `tools/check_r_versions.R` from `src/figures/R-requirements.txt`. Exact pins:
 
 | Package | Version | Used for |
 |---|---|---|
@@ -62,7 +62,7 @@ remotes::install_version("ggtext", "0.2.0")
 - `tools/setup_env.sh` installs in three passes; pass 3 fetches from the CRAN Archive via `remotes::install_version` to reach pins older than the current CRAN release.
 - Native prerequisites, checked before any install: freetype (`ft2build.h`) for `ragg`, harfbuzz (`hb-ft.h`) for `textshaping`, and a working C++ toolchain. `IGNITE_CXX_SDK_FALLBACK=1` builds against the SDK's libc++.
 - On macOS, `ggplot2`, `dplyr` and `ragg` need `type = "source"` to reach the pins; CRAN binaries are one patch behind. `gridtext` needs the CRAN `jpeg` package.
-- System glyph libraries cannot be pinned by `R-requirements.txt`. The verified build linked freetype 2.14.3, libpng 1.6.58, libtiff 4.7.2, jpeg-turbo 3.2.0 on macOS 26.5.1 arm64.
+- System glyph libraries cannot be pinned by `src/figures/R-requirements.txt`. The verified build linked freetype 2.14.3, libpng 1.6.58, libtiff 4.7.2, jpeg-turbo 3.2.0 on macOS 26.5.1 arm64.
 
 ## Overrides
 
@@ -147,12 +147,12 @@ Stage-1 scripts write to two places: `figure_data/` (committed, checked by `veri
 |---|---|---|
 | `make check-versions` | Python and R stacks against the pins; `XGBClassifier` guard coverage | exit 1 on mismatch |
 | `make verify-tables` | `figure_data/` byte-identical to the committed state | hard failure |
-| `make verify-figures` | `final_plots/` against `final_plots.sha256` | PNG/PDF differences reported; fatal for absent baseline files and for files the baseline does not list |
+| `make verify-figures` | `final_plots/` against `tools/final_plots.sha256` | PNG/PDF differences reported; fatal for absent baseline files and for files the baseline does not list |
 
 - `verify-tables` is the check for the numbers and is portable across machines. `verify-figures` reports PNG and PDF differences rather than gating on them, because `ragg` rasterizes through freetype, libpng and the installed fonts, which no lockfile pins, and every R PDF device stamps a wall-clock creation date.
 - `verify-figures` sorts each baseline file into one of five classes before reporting: MISSING (fatal by default; `VERIFY_ALLOW_MISSING` downgrades it, set only by the `supplementary` target), RENDERED (gitignored `.png`/`.pdf`; soft), DOCS (`.md`; reported only), PUBLISHED (gitignored non-image build output; fatal), COMMITTED (tracked, externally sourced; fatal).
 - 11 of the 98 tables in `figure_data/` belong to opt-in targets that `make tables` does not run — the 6 `discordance_*` caches, the 2 `label_permutation_*` files plus `scrambled_feature_control.json`, and the 2 `vignette_panelC_gwas_*` files. `verify-tables` confirms these are unchanged rather than re-derived.
-- `tools/write_baseline.sh <py> <rscript>` regenerates `final_plots.sha256` from a clean clone built with the pinned interpreters. Run it through the Makefile so R resolves packages from `.rlib/`.
+- `tools/write_baseline.sh <py> <rscript>` regenerates `tools/final_plots.sha256` from a clean clone built with the pinned interpreters. Run it through the Makefile so R resolves packages from `.rlib/`.
 - `tools/compare_submission.py` compares two assembled `final_outputs/` packages, normalising the wall-clock fields in `.xlsx` (`docProps/core.xml`) and `.pdf` (`/CreationDate`, `/ModDate`, `/ID`) before hashing.
 
 # Opt-in targets

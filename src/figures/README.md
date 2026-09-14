@@ -33,11 +33,11 @@ Run with `make figures` (~15 s, no model fitting).
 
 # Environment
 
-- R 4.4.1 and the package pins in `R-requirements.txt`, checked by `tools/check_r_versions.R` (`make check-versions`).
+- R 4.4.1 and the package pins in `src/figures/R-requirements.txt`, checked by `tools/check_r_versions.R` (`make check-versions`).
 - `make setup` provisions them into `.rlib/`, which the Makefile adds to the R library path when present.
 - `systemfonts` and `textshaping` determine glyph layout for the ragg device and are pinned for that reason. `ggtext` and `gridtext` back `fig_stat4_vignette.R` panel c.
 - Exact versions and system-library notes are in `REPRODUCIBILITY.md`.
 
 # Verification
 
-`make verify-figures` compares `final_plots/` against `final_plots.sha256`. Differing PNGs and PDFs are reported but do not fail the gate; it fails when a baseline file is missing or when `final_plots/` contains a file the baseline does not list. Under the pinned R stack PNG bytes reproduce on the same machine; a differing PNG usually means the render did not use `.rlib/`. PDFs carry a creation timestamp, so they differ on every render.
+`make verify-figures` compares `final_plots/` against `tools/final_plots.sha256`. Differing PNGs and PDFs are reported but do not fail the gate; it fails when a baseline file is missing or when `final_plots/` contains a file the baseline does not list. Under the pinned R stack PNG bytes reproduce on the same machine; a differing PNG usually means the render did not use `.rlib/`. PDFs carry a creation timestamp, so they differ on every render.

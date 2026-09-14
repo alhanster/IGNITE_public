@@ -2,7 +2,7 @@
 #
 # date:     2026-09-12T15:52:34Z
 # xgboost:  3.3.0   (pinned in requirements.txt; enforced by src/analysis/common/_version_guard.py)
-# R:        4.4.1 with ggplot2 4.0.3   (pinned in R-requirements.txt; checked by make check-versions)
+# R:        4.4.1 with ggplot2 4.0.3   (pinned in src/figures/R-requirements.txt; checked by make check-versions)
 #
 # produced: git clone <IGNITE> /tmp/verify && cd /tmp/verify && \
 #             make tables PY=<pinned-python> RSCRIPT=<pinned-rscript> && \
@@ -23,7 +23,7 @@
 # clones rendered through `make figures`. So a PNG mismatch on this machine is a real
 # signal, usually a render that did not resolve .rlib and used a different ragg.
 # What is not pinnable is the native rasterization stack -- ragg goes through
-# freetype/libpng and the installed fonts (see R-requirements.txt) -- so a DIFFERENT
+# freetype/libpng and the installed fonts (see src/figures/R-requirements.txt) -- so a DIFFERENT
 # MACHINE can reproduce every NUMBER exactly and still fail these hashes.
 #
 # So `make verify-figures` reports rendered-PNG differences without failing, and the

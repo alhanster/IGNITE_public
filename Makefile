@@ -125,7 +125,7 @@ test:
 	  echo "pytest is not installed in $(PY)."; \
 	  echo "  It is test-only and unpinned; install it with:  $(PY) -m pip install pytest"; \
 	  exit 1; }
-	@$(PY) -m pytest tools -q
+	@$(PY) -m pytest tools -q -p no:cacheprovider
 
 # STAGE 1: analysis scripts. Writes figure_data/; outputs not read by a figure go to outputs/, treated as scratch and removed by make clean.
 # Script order is load-bearing; run without -j. See REPRODUCIBILITY.md.
@@ -169,7 +169,7 @@ tables:
 
 # Stage 2: figures. Reads figure_data/ only; each renderer writes its deliverable directly into final_plots/. Numbered supplementary tables are excluded from final_plots/ and packaged separately; see REPRODUCIBILITY.md.
 
-# Tables are packaged from figure_data/ via package_supplementary_tables.py, bypassing final_plots.sha256.
+# Tables are packaged from figure_data/ via package_supplementary_tables.py, bypassing tools/final_plots.sha256.
 
 # fig_label_permutation.R writes to final_plots/ but counts as S1; numbering is set by tools/supplementary_figures.tsv.
 SUPP_RENDERERS_R  := fig_discordance.R fig_label_permutation.R fig_leakage_controlled.R
@@ -188,7 +188,7 @@ figures:
 	$(RUN) R  src/figures/fig_discordance.R
 	$(RUN) R  src/figures/fig_leakage_controlled.R
 	@echo ""
-	@echo "stage 2 complete. Verify: shasum -a 256 -c final_plots.sha256"
+	@echo "stage 2 complete. Verify: shasum -a 256 -c tools/final_plots.sha256"
 
 # Opt-in permutation null for the AUC ladder, not part of `make tables`. Budget about 8.5 hours at PERM_JOBS=11 (measured 2026-09-06: 7 h 17 m for the 1,000 permutations, plus 1 h 16 m for the 99 scrambled-feature draws that this target also runs). Reads the committed figure_data/panelA_auc_ladder.csv and checkpoints every 25 permutations so an interrupted run resumes. Writes directly into figure_data/; revert a smoke test with `git checkout -- figure_data`. See REPRODUCIBILITY.md.
 permutation-null:
@@ -264,9 +264,9 @@ verify-tables:
 
 # Rendering check: sorts files into five severity classes before reporting failures. See REPRODUCIBILITY.md.
 verify-figures:
-	@if [ ! -f final_plots.sha256 ]; then \
-	  echo "no final_plots.sha256 to verify against" >&2; exit 1; fi
-	@shasum -a 256 -c final_plots.sha256 2>/dev/null > .verify_figures.tmp || true
+	@if [ ! -f tools/final_plots.sha256 ]; then \
+	  echo "no tools/final_plots.sha256 to verify against" >&2; exit 1; fi
+	@shasum -a 256 -c tools/final_plots.sha256 2>/dev/null > .verify_figures.tmp || true
 	@rm -f .verify_figures.cls; : > .verify_figures.cls; \
 	while IFS= read -r line; do \
 	  case "$$line" in *": FAILED"*) ;; *) continue ;; esac; \
@@ -284,7 +284,7 @@ verify-figures:
 	  echo "$$c $$f" >> .verify_figures.cls; \
 	done < .verify_figures.tmp; \
 	rm -f .verify_figures.tmp; \
-	awk '/^[0-9a-f]{64}  /{print substr($$0,67)}' final_plots.sha256 | sort > .verify_listed.tmp; \
+	awk '/^[0-9a-f]{64}  /{print substr($$0,67)}' tools/final_plots.sha256 | sort > .verify_listed.tmp; \
 	find final_plots -type f ! -name .gitkeep ! -name .DS_Store -print | sort > .verify_present.tmp; \
 	while IFS= read -r f; do \
 	  if [ "$${f##*.}" != "md" ]; then echo "xdata $$f"; \
@@ -342,7 +342,7 @@ verify-figures:
 	  echo "  .rlib, so a different ragg encoded it (identical pixels, different bytes)."; \
 	  echo "  What is genuinely unpinnable is the native rasterization stack -- freetype,"; \
 	  echo "  libpng and the installed fonts -- which differs across MACHINES, not across runs"; \
-	  echo "  on one. See R-requirements.txt. The numbers are checked by verify-tables."; \
+	  echo "  on one. See src/figures/R-requirements.txt. The numbers are checked by verify-tables."; \
 	  echo "  A .pdf cannot match on any stack: every R PDF device stamps a wall-clock"; \
 	  echo "  /CreationDate, so two renders a second apart differ. Its hash records what was"; \
 	  echo "  shipped, not a reproduction claim."; \
@@ -383,7 +383,7 @@ verify-figures:
 	fi; \
 	if [ $$pub -gt 0 ] || [ $$hard -gt 0 ] || [ $$xdata -gt 0 ] \
 	   || { [ $$missing -gt 0 ] && [ -z "$(VERIFY_ALLOW_MISSING)" ]; }; then exit 1; fi; \
-	[ $$missing -eq 0 ] && [ $$nopdf -eq 0 ] && [ $$soft -eq 0 ] && [ $$docs -eq 0 ] && [ $$xdoc -eq 0 ] && echo "  final_plots/: all `grep -cE '^[0-9a-f]{64}  ' final_plots.sha256` baseline files match, and no unlisted files" || true
+	[ $$missing -eq 0 ] && [ $$nopdf -eq 0 ] && [ $$soft -eq 0 ] && [ $$docs -eq 0 ] && [ $$xdoc -eq 0 ] && echo "  final_plots/: all `grep -cE '^[0-9a-f]{64}  ' tools/final_plots.sha256` baseline files match, and no unlisted files" || true
 
 # Renders and packages only the supplementary display items, into supplementary/. See REPRODUCIBILITY.md.
 supplementary:

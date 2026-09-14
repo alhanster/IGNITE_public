@@ -24,7 +24,7 @@ cd "$REPO_ROOT"
 # Resolve the pinned R stack here, not only in the Makefile. `make figures` exports
 # R_LIBS_USER, but a direct `tools/run_step.sh R ...` call would otherwise fall back to the
 # system library -- a different ragg renders byte-different PNGs from identical pixels, which
-# silently splits final_plots.sha256 across two encoders. `:=` mirrors the Makefile's `?=`:
+# silently splits tools/final_plots.sha256 across two encoders. `:=` mirrors the Makefile's `?=`:
 # an R_LIBS_USER already in the environment wins.
 if [ -d "$REPO_ROOT/.rlib" ]; then
   export R_LIBS_USER="${R_LIBS_USER:-$REPO_ROOT/.rlib}"

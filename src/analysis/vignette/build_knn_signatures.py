@@ -3,7 +3,7 @@
 
 Opt-in: not part of make tables; run via make knn-signatures. Writes data/perturbseq/knn/signatures_<COND>.npy (float32, n_perturbed x 10282), signatures_<COND>.genes.txt, and var_gene_names.txt.
 
-See DATA_AVAILABILITY.md, Perturb-seq Knockdown Signatures, for source, filtering, and provenance.
+See data/DATA_AVAILABILITY.md for source, filtering, and provenance.
 """
 import os, sys, time, urllib.request
 import numpy as np, h5py

@@ -236,4 +236,4 @@ Contract between the two build stages: `make tables` writes this directory, and 
 | `outputs/model/pu_feature_importance_stability.csv` | bagging importances written by `pu_target_model.py`, read by `build_feature_dictionary.py`; not committed |
 | `outputs/knn/` | stage-1 scratch written by `build_knn_nearest_target.py`, annotated by `add_knn_approved_drugs.py`; not committed |
 
-See `DATA_AVAILABILITY.md` for the external provenance and redistribution terms of every committed input.
+See `data/DATA_AVAILABILITY.md` for the external provenance and redistribution terms of every committed input.
